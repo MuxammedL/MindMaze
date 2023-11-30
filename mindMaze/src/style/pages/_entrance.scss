@@ -1,0 +1,78 @@
+.entrance {
+  position: relative;
+  overflow: hidden;
+  height: 100dvh;
+  .cloud1 {
+    position: absolute;
+    left: -47px;
+    top: 110px;
+    width: 199px;
+    height: 122px;
+    z-index: 2;
+    background: no-repeat 100% / contain;
+  }
+  .cloud2 {
+    position: absolute;
+    left: 243px;
+    top: 143px;
+    width: 67px;
+    height: 43px;
+    background: no-repeat 100% / contain;
+  }
+  .cloud3 {
+    position: absolute;
+    left: 300px;
+    top: 152px;
+    width: 168px;
+    height: 101px;
+    background: no-repeat 100% / contain;
+  }
+  .sun {
+    position: absolute;
+    left: 48.22px;
+    top: 95.22px;
+    z-index: 1;
+    width: 96.563px;
+    height: 96.563px;
+    background: no-repeat 100% / contain;
+  }
+  .ellipse {
+    position: absolute;
+    left: -185px;
+    top: 547px;
+    width: 648.12px;
+    height: 503px;
+    z-index: 2;
+    background: no-repeat 100% / contain;
+  }
+  .content {
+    padding-top: 296px;
+    color: #fff;
+    text-align: center;
+    font-style: normal;
+    line-height: normal;
+    position: relative;
+    h3 {
+      font-size: 28px;
+      font-weight: 600;
+    }
+    p {
+      margin: 0 auto;
+      padding-top: 40px;
+      max-width: 283px;
+      font-size: 28px;
+      font-weight: 500;
+    }
+    .link {
+      display: inline-block;
+      padding: 16px 31px;
+      background: no-repeat center/ 30px;
+      border-radius: 6px;
+      border: 2px solid $link_color;
+      position: absolute;
+      right: 50px;
+      bottom: -130px;
+      z-index: 2;
+    }
+  }
+}
