@@ -53,6 +53,9 @@ input {
   appearance: none;
   border: none;
   background-color: transparent;
+  &:focus{
+    outline: none;
+  }
 }
 
 header,
@@ -81,6 +84,8 @@ body{
   main{
     height: 100dvh;
     background: $bg_gradient_color;
+    position: relative;
+    overflow: hidden;
   }
 }
 

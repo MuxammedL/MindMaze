@@ -1,0 +1,88 @@
+.register {
+  .maze-bg {
+    position: absolute;
+    width: 100%;
+    bottom: -50px;
+    height: 291px;
+    background: no-repeat center/cover;
+  }
+  section {
+    padding-top: 150px;
+    .name {
+      text-align: center;
+      h2 {
+        font-size: 45px;
+        font-weight: 700;
+        color: #fff;
+        span {
+          color: $primary_color;
+        }
+      }
+    }
+    .sections {
+      padding-top: 50px;
+      @include Flexible($j-cont: space-evenly);
+      div {
+        padding: 3px 10px;
+        color: #fff;
+        font-weight: 700;
+        font-size: 22px;
+        position: relative;
+        cursor: pointer;
+        &::after {
+          content: "";
+          width: 50%;
+          height: 2px;
+          background-color: $primary_color;
+          position: absolute;
+          top: 100%;
+          opacity: 0;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        &.signIn {
+          &.active {
+            &::after {
+              opacity: 1;
+            }
+          }
+        }
+        &.signUp {
+          &.active {
+            &::after {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+    .formForSignIn {
+      form {
+        margin: 60px auto 0;
+        max-width: 296px;
+        @include Flexible($f-dir: column, $a-items: center);
+        gap: 40px;
+        button {
+          @extend %signBtn;
+        }
+      }
+    }
+
+    .formForSignUp {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+  input {
+    background: no-repeat 12px/24px;
+    padding: 10px 0 10px 48px;
+    border-bottom: 2px solid $link_color;
+    width: 100%;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 15px;
+    cursor: pointer;
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.65);
+    }
+  }
+}

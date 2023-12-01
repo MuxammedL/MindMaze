@@ -1,16 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
+import { motion as m } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 const Entrance = () => {
+
   return (
     <>
       <main className="entrance">
         <div className="images">
-          <div
+          <div 
             className="cloud1"
             style={{ backgroundImage: "url('./images/cloud.svg')" }}
           ></div>
-          <div
+          <div 
             className="cloud2"
             style={{ backgroundImage: "url('./images/cloud.svg')" }}
           ></div>
@@ -30,7 +33,11 @@ const Entrance = () => {
         <div className="content">
           <h3>Zehnini labirintdən çıxar!</h3>
           <p>Oyun ilə öyrənmənin sonsuz kefini çıxarın</p>
-          <Link to="/registration" style={{ backgroundImage: "url('./images/arrow1.svg')" }} className="link"></Link>
+          <Link 
+            to="/registration"
+            style={{ backgroundImage: "url('./images/arrow1.svg')" }}
+            className="link"
+          ></Link>
         </div>
       </main>
     </>
