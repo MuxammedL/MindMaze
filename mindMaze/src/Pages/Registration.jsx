@@ -35,7 +35,7 @@ const Registration = () => {
                 name="password"
                 style={{ backgroundImage: "url('./images/lock.svg')" }}
               />
-              <button type="submit">Daxil ol</button>
+              <Link to="/gamer-modes" type="submit">Daxil ol</Link>
             </form>
           </div>
           <div className="formForSignUp">
@@ -56,7 +56,7 @@ const Registration = () => {
                 type="password"
                 style={{ backgroundImage: "url('./images/lock.svg')" }}
               />
-              <button type="submit">Qeydiyyatdan keç</button>
+              <Link to="/gamer-modes" type="submit">Qeydiyyatdan keç</Link>
             </form>
           </div>
         </section>

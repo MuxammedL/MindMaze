@@ -62,7 +62,7 @@
         max-width: 296px;
         @include Flexible($f-dir: column, $a-items: center);
         gap: 40px;
-        button {
+        a {
           @extend %signBtn;
         }
       }

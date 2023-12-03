@@ -1,0 +1,47 @@
+.bot-mode {
+    .mode-wrapper {
+        padding-top: 135px;
+         @include Flexible(column,null,center,center);
+        .name {
+            text-align: center;
+            padding-bottom: 127px;
+            h2 {
+              font-size: 64px;
+              font-weight: 700;
+              color: #fff;
+              span {
+                color: $primary_color;
+              }
+            }
+        }
+        .content {
+            background-color: $box-bg-color;
+            width: 386px;
+            border-radius: 15px;
+            padding: 15px;
+            .content-wrapper {
+                background-color: $card-color;
+                @include Flexible(column,null,center,center);
+                border-radius: 12px;
+                padding: 37px 0;
+                gap: 20px;
+                box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                a { 
+                    display: inline-block;
+                    padding: 10px 50px;
+                    background-color: $primary_color;
+                    border-radius: 12px;
+                    span {
+                        font-size: 30px;
+                        font-weight: 700;
+                        color: $card-color;
+                    }
+                }
+            }
+        }
+        .back-button {
+            @extend %secondary-button;
+        }
+        
+    }
+}
