@@ -2,7 +2,7 @@
   .maze-bg {
     position: absolute;
     width: 100%;
-    bottom: -50px;
+    bottom: -65px;
     height: 291px;
     background: no-repeat center/cover;
   }
@@ -29,40 +29,69 @@
         font-size: 22px;
         position: relative;
         cursor: pointer;
-        &::after {
-          content: "";
-          width: 50%;
-          height: 2px;
-          background-color: $primary_color;
-          position: absolute;
-          top: 100%;
-          opacity: 0;
-          left: 50%;
-          transform: translateX(-50%);
-        }
         &.signIn {
-          &.active {
+          &::after {
+            content: "";
+            width: 50%;
+            height: 2px;
+            background-color: $primary_color;
+            position: absolute;
+            top: 100%;
+            opacity: 0;
+            transform: translateX(-50%);
+            opacity: 1;
+            transition: all 0.6s linear;
+          }
+          &.left {
             &::after {
-              opacity: 1;
+              left: 50%;
             }
           }
-        }
-        &.signUp {
-          &.active {
+          &.right {
             &::after {
-              opacity: 1;
+              left: 235%;
             }
           }
         }
       }
     }
     .formForSignIn {
+      opacity: 0;
+      visibility: hidden;
+      position: relative;
+      z-index: 1;
+      transition: all 0.6s linear;
+      &.active {
+        opacity: 1;
+        visibility: visible;
+      }
       form {
         margin: 60px auto 0;
         max-width: 296px;
-        @include Flexible($f-dir: column, $a-items: center);
+        @include Flexible($f-dir: column);
         gap: 40px;
-        a {
+        .inputs {
+          position: relative;
+          p {
+            visibility: hidden;
+            opacity: 0;
+            padding: 6px 15px;
+            position: absolute;
+            font-size: 13px;
+            color: $warning_color;
+            &.show{
+              opacity: 1;
+              visibility: visible;
+            }
+            
+          }
+        }
+        input {
+          &:first-child {
+            margin-bottom: 40px;
+          }
+        }
+        button {
           @extend %signBtn;
         }
       }
@@ -71,6 +100,48 @@
     .formForSignUp {
       opacity: 0;
       visibility: hidden;
+      position: relative;
+      z-index: 2;
+      transition: all 0.4s linear;
+      top: -252.5px;
+      &.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      form {
+        margin: 60px auto 0;
+        max-width: 296px;
+        @include Flexible($f-dir: column);
+        gap: 40px;
+        .group {
+          input {
+            &:first-child {
+              background-size: 21px;
+              background-position: 13.5px;
+            }
+          }
+          p{
+            width: calc(100% - 120px);
+            visibility: hidden;
+            opacity: 0;
+            padding: 6px 15px;
+            position: absolute;
+            font-size: 13px;
+            color: $warning_color;
+            &.show{
+              opacity: 1;
+              visibility: visible;
+            }
+            &.forPassword{
+              color: $link_color;
+            }
+          }
+        }
+        button {
+          @extend %signBtn;
+          transform: translateY(8px);
+        }
+      }
     }
   }
   input {
