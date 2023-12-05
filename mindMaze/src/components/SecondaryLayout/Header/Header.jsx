@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../Header/_Header.scss'
+import './_Header.scss'
 
 
 const Header = () => {
@@ -22,7 +22,7 @@ const Header = () => {
                     navbarBg.style.left= "107px"
                     localStorage.setItem("navbar","medals")
                 } else if(item.dataset.id =="3") {
-                    navbarBg.style.left= "210px"
+                    navbarBg.style.left= "212px"
                     localStorage.setItem("navbar","group")
                 } else if(item.dataset.id== "4") {
                     navbarBg.style.left= "308px"
@@ -36,7 +36,7 @@ const Header = () => {
             } else if(localStorage.getItem("navbar")==="medals") {
                 navbarBg.style.left= "107px"
             } else if(localStorage.getItem("navbar")==="group") {
-                navbarBg.style.left= "210px"
+                navbarBg.style.left= "212px"
             } else if(localStorage.getItem("navbar")==="profil") {
                 navbarBg.style.left= "308px"
             }
@@ -51,25 +51,25 @@ const Header = () => {
             <header>
 
                 <div className="navbar-menu">
-                    <div className='navbar-bg' style={{ backgroundImage: "url('./images/navbar-ellipse.svg')" }}></div>
+                    <div className='navbar-bg' style={{ backgroundImage: "url('../images/navbar-ellipse.svg')" }}></div>
                     <nav className='nav-bar'>
                         <ul className='menu'>
                             <li>
-                                <Link data-id="1" to="/gamer-modes" className={`menu-item ${pathName==="/gamer-modes" ? "active" : ""}`} style={{backgroundImage: `url('./images/circle-play-solid.svg')`}}></Link>
+                                <Link data-id="1" to="/gamer-modes" className={`menu-item ${pathName.startsWith('/gamer-modes') ? "active" : ""}`} style={{backgroundImage: `url('../images/circle-play-solid.svg')`}}></Link>
                             </li>
 
                             <li>
-                                <Link data-id="2" to="/medals" className={`menu-item ${pathName==="/medals" ? "active" : ""}`} style={{backgroundImage: `url('./images/medal-solid.svg')`}}>
+                                <Link data-id="2" to="/gamer-modes/medals" className={`menu-item ${pathName.startsWith("/medals") ? "active" : ""}`} style={{backgroundImage: `url('../images/medal-solid.svg')`}}>
                                 </Link>
                             </li>
 
                             <li>
-                                <Link data-id="3" to='/group' className={`menu-item ${pathName==="/group" ? "active" : ""}`} style={{backgroundImage: `url('./images/user-group-solid.svg')`}}>
+                                <Link data-id="3" to='/gamer-modes/group' className={`menu-item ${pathName.startsWith("/group") ? "active" : ""}`} style={{backgroundImage: `url('../images/cup.svg')`}}>
                                 </Link>
                             </li>
 
                             <li>
-                                <Link data-id="4" to='/profil' className={`menu-item ${pathName==="/profil" ? "active" : ""}`} style={{backgroundImage: `url('./images/user-solid.svg')`}}></Link>
+                                <Link data-id="4" to='/gamer-modes/profil' className={`menu-item ${pathName.startsWith("/profil") ? "active" : ""}`} style={{backgroundImage: `url('../images/user-solid.svg')`}}></Link>
                             </li>
                         </ul>
                     </nav>

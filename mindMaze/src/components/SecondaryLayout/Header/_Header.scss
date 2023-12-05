@@ -1,4 +1,4 @@
-@import "../../style/global";
+@import "../../../style/global";
 
 header {
   position: fixed;
@@ -50,7 +50,7 @@ header {
               width: 48px;
               &.active {
                 width: 52px;
-                background: url("../../public/images/user-group-solid-active.svg") no-repeat center !important;
+                background: url("../../public/images/active-cup.svg") no-repeat center !important;
               }
             }
           }

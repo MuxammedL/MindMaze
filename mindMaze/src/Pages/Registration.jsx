@@ -6,7 +6,9 @@ const Registration = () => {
   const [showForSignIn, setShowForSignIn] = useState(true);
   const [showForSignUp, setShowForSignUp] = useState(true);
   const [showEmailPopup, setshowEmailPopup] = useState(false);
-
+  const handleClick = () => {
+    navigate("/gamer-modes");
+  };
   const handleShowClickEmailPopup = () => {
     setshowEmailPopup(true);
   };
@@ -153,7 +155,7 @@ const Registration = () => {
     formForSignIn.addEventListener("submit", function (e) {
       e.preventDefault();
       let isNotNull = true;
-      const formData = {};
+      const formData = {};  
       for (const input of formForSignIn.elements) {
         if (input.tagName === "INPUT") {
           formData[input.name] = input.value;
@@ -182,7 +184,7 @@ const Registration = () => {
           })
           .then((data) => {
             if (data.isSuccess) {
-              navigate("/gamer-modes");
+              handleClick();
             } else {
               signInErr.classList.add("show");
               console.error("Failed to login:", data.errors.message);

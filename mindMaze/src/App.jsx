@@ -26,8 +26,8 @@ function App() {
           <Route path="registration" element={<Registration/>} />
           <Route path="duels-zone" element={<DuelsZone/>}/>
 
-          <Route path="/" element={<SecondaryLayout/>}>
-            <Route path="gamer-modes" element={<PlayerModes/>} />
+          <Route path="/gamer-modes" element={<SecondaryLayout/>}>
+            <Route index element={<PlayerModes/>} />
             <Route path="single-player-mode" element={<SinglePlayerModes/>} />
             <Route path="group-player-mode" element={<GroupPlayerModes/>}/>
             <Route path="bot-mode" element={<BotMode/>}/>
