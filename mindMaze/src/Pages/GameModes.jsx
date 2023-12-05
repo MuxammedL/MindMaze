@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const SinglePlayerModes = () => {
-
+const PlayerModes = () => {
 
     return (
         <>
-            <main className="single-player-mode">
+            <main className="gamer-modes">
                 <div className="images">
                     <div className="ellipse1" style={{ backgroundImage: "url('./images/ellipse-3.svg')" }}></div>
                     <div className="ellipse2" style={{ backgroundImage: "url('./images/ellipse-4.svg')" }}></div>
@@ -21,21 +20,25 @@ const SinglePlayerModes = () => {
                     </div>
 
                     <div className="game-modes">
-                        <Link to="/bot-mode" className="game-mode">
+                        <Link to="/single-player-mode" className="game-mode">
                             <div className="wrapper">
-                                <img src='./images/single-player-mode-1.svg' alt="" className='image1'/>
+                                <img src='./images/single_player.svg' alt="" className='player'/>
+                                <span>Tək</span>
                             </div>
                         </Link>
-                        <Link to="/" className="game-mode">
+                        <Link to="/group-player-mode" className="game-mode">
                             <div className="wrapper">
-                                <img src='./images/single-player-mode-2.svg' alt="" className='image2'/>
+                                <img src='./images/group-of-players.svg' alt="" className='players'/>
+                                <span>Qrup</span>
                             </div>
                         </Link>
                     </div>
                 </div>
+
             </main>
         </>
     )
+
 }
 
-export default SinglePlayerModes
+export default PlayerModes

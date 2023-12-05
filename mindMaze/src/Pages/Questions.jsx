@@ -1,11 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from "react";
 
 const Questions = () => {
 
+    const [seconds, setSeconds] = useState(59);
 
-    
+    useEffect(() => {
+        const timerInterval = setInterval(() => {
+            setSeconds(prevSeconds => {
+                const newSeconds = prevSeconds - 1;
 
+                if (newSeconds < 0) {
+                    clearInterval(timerInterval);
+                    console.log('stopped');
+                    return 0;
+                }
+
+                return newSeconds;
+            });
+        }, 1000);
+
+        return () => clearInterval(timerInterval);
+    }, []);
 
 
     return (
@@ -18,11 +35,9 @@ const Questions = () => {
                         </h2>
                     </div>
 
-
-
                     <div className="question-content">
                         <div className="timer">
-                            <span>00:59</span>
+                            <span>{`00:${seconds < 10 ? '0' : ''}${seconds}`}</span>
                         </div>
                         <div className="content">
                             <div className="question">

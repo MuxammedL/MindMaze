@@ -1,0 +1,69 @@
+@import "../../style/global";
+
+header {
+  position: fixed;
+  bottom: 0px;
+  z-index: 1;
+  width: 430px;
+  height: 75px;
+  .navbar-menu {
+    position: relative;
+    background-color: $card-color;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    width: 100%;
+    padding: 18px 40px;
+    height: 100%;
+    div {
+      position: absolute;
+      z-index: 0;
+      bottom: 28px;
+      width: 111px;
+      height: 94px;
+      background: no-repeat center / contain;
+    }
+    .nav-bar {
+      .menu {
+        @include Flexible(null, null, space-between, center);
+        li {
+          width: 48px;
+          &:first-child {
+            .active {
+              background: url("../../public/images/circle-play-solid-active.svg") no-repeat center !important;
+            }
+          }
+          &:nth-child(2) {
+            .active {
+              background: url("../../public/images/medal-solid-active.svg") no-repeat center !important;
+            }
+          }
+          &:nth-child(4) {
+            a {
+              &.active {
+                background: url("../../public/images/user-solid-active.svg") no-repeat center !important;
+              }
+            }
+          }
+          &:nth-child(3) {
+            a {
+              width: 48px;
+              &.active {
+                width: 52px;
+                background: url("../../public/images/user-group-solid-active.svg") no-repeat center !important;
+              }
+            }
+          }
+          a {
+            display: inline-block;
+            width: 44px;
+            height: 44px;
+            background: no-repeat 100%;
+            &.active {
+              transform: translateY(-31px);
+            }
+          }
+        }
+      }
+    }
+  }
+}
