@@ -3,7 +3,7 @@ const NotFound =()=>{
     return (
         <>
             <h1>Page don't found</h1>
-            <Link to='/'>Home</Link>
+            <Link to='/gamer-modes'>Home</Link>
         </>
     )
 }

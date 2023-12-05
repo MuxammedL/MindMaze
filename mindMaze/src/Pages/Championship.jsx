@@ -17,7 +17,7 @@ const Championship = () => {
 
                     <div className="game-mode">
                         <div className="wrapper">
-                            <img src='./images/championship.svg' alt="" className='image1'/>
+                            <img src='../images/championship.svg' alt="" className='image1'/>
                             <span>Çempionat</span>
                         </div>
                     </div>
@@ -29,11 +29,7 @@ const Championship = () => {
                         </div>
                     </div>
 
-                    <div className="back-btn">
-                        <Link className='back-button' to="/group-player-mode">
-                            <span>Geri</span>
-                        </Link>
-                    </div>
+                    
                 </div>
             </main>
         </>

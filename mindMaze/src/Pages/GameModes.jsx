@@ -28,7 +28,7 @@ const PlayerModes = () => {
           </div>
 
           <div className="game-modes">
-            <Link to="/gamer-modes/single-player-mode" className="game-mode">
+            <Link to="/bot-mode" className="game-mode">
               <div className="wrapper">
                 <img
                   src="../images/single_player.svg"
@@ -38,7 +38,7 @@ const PlayerModes = () => {
                 <span>Tək</span>
               </div>
             </Link>
-            <Link to="/gamer-modes/group-player-mode" className="game-mode">
+            <Link to="/group-player-mode" className="game-mode">
               <div className="wrapper">
                 <img
                   src="../images/group-of-players.svg"
