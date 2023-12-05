@@ -6,6 +6,47 @@
     height: 291px;
     background: no-repeat center/cover;
   }
+  .emailPopup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    inset: 0;
+    z-index: 3;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s linear;
+    &.show{
+      opacity: 1;
+      visibility: visible;
+    }
+    .inner {
+      width: 303px;
+      height: 196px;
+      padding: 45px 18px 20px 18px;
+      border-radius: 12px;
+      background-color: $emailPopup_color;
+      transform: translateY(20px);
+      @include Flexible($j-cont: space-between, $f-dir: column);
+      p {
+        color: #1e3050;
+        text-align: center;
+        font-size: 20px;
+        font-weight: 700;
+      }
+      .okBtn {
+        border-radius: 10px;
+        padding: 8px 20px;
+        width: fit-content;
+        margin: 0 auto;
+        font-size: 20px;
+        font-family: "Poppins", sans-serif;
+        font-weight: bold;
+        background-color: #fff;
+      }
+    }
+  }
   section {
     padding-top: 150px;
     .name {
@@ -70,6 +111,20 @@
         max-width: 296px;
         @include Flexible($f-dir: column);
         gap: 40px;
+        .group {
+          position: relative;
+          .eye {
+            position: absolute;
+            cursor: pointer;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            width: 33px;
+            height: 23px;
+            background: no-repeat center;
+            transition: all 0.3s ease;
+          }
+        }
         .inputs {
           position: relative;
           p {
@@ -78,16 +133,14 @@
             padding: 6px 15px;
             position: absolute;
             font-size: 13px;
-            color: $warning_color;
-            &.show{
+            bottom: -30px;
+            color: $link_color;
+            &.show {
               opacity: 1;
               visibility: visible;
             }
-            
           }
-        }
-        input {
-          &:first-child {
+          & > input {
             margin-bottom: 40px;
           }
         }
@@ -114,25 +167,37 @@
         @include Flexible($f-dir: column);
         gap: 40px;
         .group {
+          position: relative;
+          .eye {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            width: 33px;
+            height: 23px;
+            cursor: pointer;
+            background: no-repeat center;
+            transition: all 0.3s ease;
+          }
           input {
             &:first-child {
               background-size: 21px;
               background-position: 13.5px;
             }
           }
-          p{
-            width: calc(100% - 120px);
+          p {
+            width: 100%;
             visibility: hidden;
             opacity: 0;
             padding: 6px 15px;
             position: absolute;
             font-size: 13px;
-            color: $warning_color;
-            &.show{
+            color: $link_color;
+            &.show {
               opacity: 1;
               visibility: visible;
             }
-            &.forPassword{
+            &.forPassword {
               color: $link_color;
             }
           }

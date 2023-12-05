@@ -1,12 +1,29 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion as m } from "framer-motion";
 import { useEffect, useState } from "react";
 const Registration = () => {
+  const navigate = useNavigate();
+  const [showForSignIn, setShowForSignIn] = useState(true);
+  const [showForSignUp, setShowForSignUp] = useState(true);
+  const [showEmailPopup, setshowEmailPopup] = useState(false);
+
+  const handleShowClickEmailPopup = () => {
+    setshowEmailPopup(true);
+  };
+  const handleBtnClickEmailPopup = () => {
+    setshowEmailPopup(false);
+  };
+  const handleShowClickIn = () => {
+    setShowForSignIn((prev) => !prev);
+  };
+  const handleShowClickUp = () => {
+    setShowForSignUp((prev) => !prev);
+  };
   useEffect(() => {
     const signIn = document.querySelector(".signIn");
     const signUp = document.querySelector(".signUp");
-    const formForSignIn = document.querySelector(".formForSignIn");
-    const formForSignUp = document.querySelector(".formForSignUp");
+    const formForSignIn = document.querySelector(".formForSignIn form");
+    const formForSignUp = document.querySelector(".formForSignUp form");
     const signInErr = document.querySelector(".signInErr");
     const signInEmail = document.querySelector(
       '.formForSignIn input[type="email"]'
@@ -23,33 +40,47 @@ const Registration = () => {
     const signUpPassword = document.querySelector(
       '.formForSignUp input[type="password"]'
     );
+    const okBtn = document.querySelector(".okBtn");
     let passed = false;
+
+    okBtn.addEventListener("click", () => {
+      signIn.click();
+    });
+
     signUp.addEventListener("click", () => {
       document.querySelector(".signIn.left") &&
         document.querySelector(".signIn.left").classList.remove("left");
       signIn.classList.add("right");
-      formForSignIn.classList.remove("active");
-      formForSignUp.classList.add("active");
+      formForSignIn.parentElement.classList.remove("active");
+      formForSignUp.parentElement.classList.add("active");
     });
+
     signIn.addEventListener("click", () => {
       document.querySelector(".signIn.right") &&
         document.querySelector(".signIn.right").classList.remove("right");
       signIn.classList.add("left");
-      formForSignIn.classList.add("active");
-      formForSignUp.classList.remove("active");
+      formForSignIn.parentElement.classList.add("active");
+      formForSignUp.parentElement.classList.remove("active");
     });
 
     function error(input, message) {
       const p = input.nextElementSibling;
       p.innerText = message;
       p.classList.add("show");
-      passed=false;
+      passed = false;
     }
+    // function error(input, message) {
+    //   const p = input.nextElementSibling.nextElementSibling;
+    //   p.innerText = message;
+    //   p.classList.add("show");
+    //   passed = false;
+    // }
+
     function succes(input) {
       const p = input.nextElementSibling;
       p.innerText = "";
       p.classList.remove("show");
-      passed=true;
+      passed = true;
     }
 
     function checkRequired(inputs) {
@@ -61,6 +92,7 @@ const Registration = () => {
         }
       });
     }
+
     const validateEmail = (email) => {
       return String(email)
         .toLowerCase()
@@ -120,11 +152,48 @@ const Registration = () => {
 
     formForSignIn.addEventListener("submit", function (e) {
       e.preventDefault();
-      if (!validateEmail(signInEmail.value)) {
-        signInErr.classList.add("show");
+      let isNotNull = true;
+      const formData = {};
+
+      for (const input of formForSignIn.elements) {
+        if (input.tagName === "INPUT") {
+          formData[input.name] = input.value;
+          if (input.value == "") {
+            isNotNull = false;
+          }
+        }
+      }
+      if (isNotNull) {
+        fetch(
+          "https://mindmazeprojectwebapi-6nortrmkbq-ey.a.run.app/User/Login",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json;charset=utf-8",
+            },
+            body: JSON.stringify(formData),
+          }
+        )
+          .then((res) => {
+            if (res.ok) {
+              return res.json();
+            } else {
+              throw new Error("Failed to login user");
+            }
+          })
+          .then((data) => {
+            if (data.isSuccess) {
+              navigate("/home");
+            } else {
+              signInErr.classList.add("show");
+              console.error("Failed to login:", data.errors.message);
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error.message);
+          });
       } else {
-        signInErr.classList.remove("show");
-        // Requset atilacaq
+        signInErr.classList.add("show");
       }
     });
 
@@ -132,30 +201,76 @@ const Registration = () => {
       error(signUpPassword, checkPasswordStrength(signUpPassword.value));
     });
     signUpPassword.addEventListener("focus", () => {
-        error(signUpPassword, checkPasswordStrength(signUpPassword.value));
-      });
+      error(signUpPassword, checkPasswordStrength(signUpPassword.value));
+    });
     formForSignUp.addEventListener("submit", function (e) {
       e.preventDefault();
       checkRequired([signUpUsername, signUpEmail]);
+      checkLength(signUpUsername, 5, 15);
       if (!validateEmail(signUpEmail.value)) {
         error(signUpEmail, `Emaili düzgün daxil edin.`);
       }
-      checkLength(signUpUsername, 5, 15);
-      if(passed&&checkPasswordStrength(signUpPassword.value).length === 0){
-        console.log('gonderildi')
-      }else{
-        console.log('gonderilmedi')
+      if (passed && checkPasswordStrength(signUpPassword.value).length === 0) {
+        const formData = {};
+        for (const input of formForSignUp.elements) {
+          if (input.tagName === "INPUT") {
+            formData[input.name] = input.value;
+          }
+        }
+        handleShowClickEmailPopup();
+
+        fetch(
+          "https://mindmazeprojectwebapi-6nortrmkbq-ey.a.run.app/User/Create",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json;charset=utf-8",
+            },
+            body: JSON.stringify(formData),
+          }
+        )
+          .then((res) => {
+            if (res.ok) {
+              for (const input of formForSignUp.elements) {
+                input.value = null;
+              }
+              succes(signUpUsername);
+              succes(signUpEmail);
+            } else {
+              throw new Error("Failed to create user");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error.message);
+          });
       }
-      
     });
   }, []);
+
   return (
     <>
-      <main className="register">
+      <m.main
+        className="register"
+        initial={{
+          opacity: 0.5,
+        }}
+        animate={{
+          opacity: 1,
+        }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         <div
           className="maze-bg"
           style={{ backgroundImage: "url('./images/maze-bg.svg')" }}
         ></div>
+        <div className={`emailPopup ${showEmailPopup ? "show" : ""}`}>
+          <div className="inner">
+            <p>Təsdiq üçün e-mailinizə mesaj göndərildi</p>
+            <button onClick={handleBtnClickEmailPopup} className="okBtn">
+              OK
+            </button>
+          </div>
+        </div>
         <section>
           <div className="name">
             <h2>
@@ -179,15 +294,28 @@ const Registration = () => {
                   name="email"
                   style={{ backgroundImage: "url('./images/email.svg')" }}
                 />
-                <input
-                  type="password"
-                  name="password"
-                  style={{ backgroundImage: "url('./images/lock.svg')" }}
-                  placeholder="********"
-                />
+                <div className="group">
+                  <input
+                    type={`${showForSignIn ? "password" : "text"}`}
+                    name="password"
+                    style={{ backgroundImage: "url('./images/lock.svg')" }}
+                    placeholder="********"
+                  />
+                  <div
+                    onClick={handleShowClickIn}
+                    className="eye"
+                    style={{
+                      backgroundImage: `${
+                        showForSignIn
+                          ? "url('./images/closedEye.svg')"
+                          : "url('./images/showEye.svg')"
+                      }`,
+                    }}
+                  ></div>
+                </div>
                 <p className="signInErr">Email vəya parol səhvdir !</p>
               </div>
-              <button type="submit">Daxil ol</button>
+              <button>Daxil ol</button>
             </form>
           </div>
           <div className="formForSignUp">
@@ -214,19 +342,30 @@ const Registration = () => {
               </div>
               <div className="group">
                 <input
-                  type="password"
+                  type={`${showForSignUp ? "password" : "text"}`}
                   name="password"
                   style={{ backgroundImage: "url('./images/lock.svg')" }}
                   placeholder="********"
                   id="Şifrə"
                 />
                 <p className="forPassword"></p>
+                <div
+                  onClick={handleShowClickUp}
+                  className="eye"
+                  style={{
+                    backgroundImage: `${
+                      showForSignUp
+                        ? "url('./images/closedEye.svg')"
+                        : "url('./images/showEye.svg')"
+                    }`,
+                  }}
+                ></div>
               </div>
               <button type="submit">Qeydiyyatdan keç</button>
             </form>
           </div>
         </section>
-      </main>
+      </m.main>
     </>
   );
 };
