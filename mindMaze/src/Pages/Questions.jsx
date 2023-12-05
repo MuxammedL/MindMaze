@@ -83,7 +83,7 @@ const Questions = () => {
                             <span>0000</span>
                         </Link>
 
-                        <Link className='pass-button' to="/">
+                        <Link className='pass-button' to="/gamer-modes">
                             <span>Pass</span>
                         </Link>
                     </div>

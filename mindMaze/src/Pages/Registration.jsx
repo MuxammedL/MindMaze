@@ -154,7 +154,6 @@ const Registration = () => {
       e.preventDefault();
       let isNotNull = true;
       const formData = {};
-
       for (const input of formForSignIn.elements) {
         if (input.tagName === "INPUT") {
           formData[input.name] = input.value;
@@ -183,7 +182,7 @@ const Registration = () => {
           })
           .then((data) => {
             if (data.isSuccess) {
-              navigate("/home");
+              navigate("/gamer-modes");
             } else {
               signInErr.classList.add("show");
               console.error("Failed to login:", data.errors.message);
@@ -217,7 +216,6 @@ const Registration = () => {
             formData[input.name] = input.value;
           }
         }
-        handleShowClickEmailPopup();
 
         fetch(
           "https://mindmazeprojectwebapi-6nortrmkbq-ey.a.run.app/User/Create",
@@ -231,6 +229,7 @@ const Registration = () => {
         )
           .then((res) => {
             if (res.ok) {
+              handleShowClickEmailPopup();
               for (const input of formForSignUp.elements) {
                 input.value = null;
               }

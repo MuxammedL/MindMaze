@@ -3,7 +3,9 @@
 const Medals = () => {
     return (
         <>
+        <main>
             <h1>Medals</h1>
+        </main>
         </>
     )
 }
