@@ -21,26 +21,38 @@ import DuelsQuestions from "./Pages/DuelsQuestions";
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 
 function App() {
-  const [connection, setConnection] = useState();
   const joinGame = async (token, username, point) => {
     try {
-      const connection = new HubConnectionBuilder()
+      const newConnection = new HubConnectionBuilder()
         .withUrl(
           "https://mindmazeprojectwebapi-6nortrmkbq-ey.a.run.app/playhub"
         )
         .configureLogging(LogLevel.Information)
         .build();
 
-      connection.on("ResultOfInvite", (str1,str2) => {
-        console.log(str1,str2);
+      newConnection.on("GetOnlineUsers", (onlineUsers) => {
+        console.log("Received online users: ", onlineUsers);
       });
-      connection.on("RecMessage", (str1,str2) => {
-        console.log(str1,str2);
+
+      newConnection.on("RecMessage", (str1, str2) => {
+        console.log(str1, str2);
       });
-      await connection.start();
-      await connection.invoke("BeOnline", { token, username, point });
-    } catch (error) {}
+
+      setConnection(newConnection); // Set the connection state
+
+      await newConnection.start();
+
+      // Invoke BeOnline method and handle any response
+      await newConnection.invoke("BeOnline", { token, username, point });
+
+      // Invoke GetOnlineUsers and handle the response
+      const onlineUsers = await newConnection.invoke("GetOnlineUsers");
+      console.log("Online users:", onlineUsers);
+    } catch (error) {
+      console.error("Error joining game:", error);
+    }
   };
+
   return (
     <>
       <Routes>

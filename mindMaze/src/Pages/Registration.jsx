@@ -2,8 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion as m } from "framer-motion";
 import { useEffect, useState } from "react";
 
-
-const Registration = ({joinGame}) => {
+const Registration = ({ joinGame }) => {
   const navigate = useNavigate();
   const [showForSignIn, setShowForSignIn] = useState(true);
   const [showForSignUp, setShowForSignUp] = useState(true);
@@ -188,13 +187,9 @@ const Registration = ({joinGame}) => {
             if (data.isSuccess) {
               handleClick();
               const { point, token_ID, username } = data.response;
-              const info = {
-                point: point,
-                token_ID: token_ID,
-                username: username,
-              };
+              const info = { point, token_ID, username };
               localStorage.setItem("response", JSON.stringify(info));
-              joinGame(token_ID,username,point)
+              joinGame(token_ID, username, point);
             } else {
               signInErr.classList.add("show");
               console.error("Failed to login:", data.errors.message);
