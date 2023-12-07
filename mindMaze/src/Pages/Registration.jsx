@@ -1,7 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { motion as m } from "framer-motion";
 import { useEffect, useState } from "react";
-const Registration = () => {
+
+
+const Registration = ({joinGame}) => {
   const navigate = useNavigate();
   const [showForSignIn, setShowForSignIn] = useState(true);
   const [showForSignUp, setShowForSignUp] = useState(true);
@@ -155,7 +157,7 @@ const Registration = () => {
     formForSignIn.addEventListener("submit", function (e) {
       e.preventDefault();
       let isNotNull = true;
-      const formData = {};  
+      const formData = {};
       for (const input of formForSignIn.elements) {
         if (input.tagName === "INPUT") {
           formData[input.name] = input.value;
@@ -185,6 +187,14 @@ const Registration = () => {
           .then((data) => {
             if (data.isSuccess) {
               handleClick();
+              const { point, token_ID, username } = data.response;
+              const info = {
+                point: point,
+                token_ID: token_ID,
+                username: username,
+              };
+              localStorage.setItem("response", JSON.stringify(info));
+              joinGame(token_ID,username,point)
             } else {
               signInErr.classList.add("show");
               console.error("Failed to login:", data.errors.message);
@@ -287,7 +297,7 @@ const Registration = () => {
             </div>
           </div>
           <div className="formForSignIn active">
-            <form>
+            <form noValidate>
               <div className="inputs">
                 <input
                   type="email"

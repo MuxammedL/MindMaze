@@ -18,35 +18,57 @@ import "./style/_global.scss";
 import Result from "./Pages/Result";
 import Score from "./Pages/Score";
 import DuelsQuestions from "./Pages/DuelsQuestions";
+import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 
 function App() {
+  const [connection, setConnection] = useState();
+  const joinGame = async (token, username, point) => {
+    try {
+      const connection = new HubConnectionBuilder()
+        .withUrl(
+          "https://mindmazeprojectwebapi-6nortrmkbq-ey.a.run.app/playhub"
+        )
+        .configureLogging(LogLevel.Information)
+        .build();
+
+      connection.on("ResultOfInvite", (str1,str2) => {
+        console.log(str1,str2);
+      });
+      connection.on("RecMessage", (str1,str2) => {
+        console.log(str1,str2);
+      });
+      await connection.start();
+      await connection.invoke("BeOnline", { token, username, point });
+    } catch (error) {}
+  };
   return (
     <>
       <Routes>
-        <Route path="/" element={<Layout/>}>
+        <Route path="/" element={<Layout />}>
           <Route index element={<Entrance />} />
-          <Route path="registration" element={<Registration/>} />
-          <Route path="duels-zone" element={<DuelsZone/>}/>
+          <Route
+            path="registration"
+            element={<Registration joinGame={joinGame} />}
+          />
+          <Route path="duels-zone" element={<DuelsZone />} />
 
-          <Route path="/gamer-modes" element={<SecondaryLayout/>}>
-            <Route index element={<PlayerModes/>} />
+          <Route path="/gamer-modes" element={<SecondaryLayout />}>
+            <Route index element={<PlayerModes />} />
 
-            <Route path="profil" element={<Profil/>}/>
-            <Route path="group" element={<Group/>}/>
-          <Route path="championship" element={<Championship/>}/>
-            <Route path="medals" element={<Medals/>}/>
+            <Route path="profil" element={<Profil />} />
+            <Route path="group" element={<Group />} />
+            <Route path="championship" element={<Championship />} />
+            <Route path="medals" element={<Medals />} />
           </Route>
-            <Route path="group-player-mode" element={<GroupPlayerModes/>}/>
-            <Route path="bot-mode" element={<BotMode/>}/>
+          <Route path="group-player-mode" element={<GroupPlayerModes />} />
+          <Route path="bot-mode" element={<BotMode />} />
 
-            <Route path="scores" element={<Score/>}/>
-          <Route path="result" element={<Result/>}/>
+          <Route path="scores" element={<Score />} />
+          <Route path="result" element={<Result />} />
 
-          <Route path="bot-questions" element={<BotQuestions/>}/>
-          <Route path="duels-questions" element={<DuelsQuestions/>}/>
+          <Route path="bot-questions" element={<BotQuestions />} />
+          <Route path="duels-questions" element={<DuelsQuestions />} />
 
-
-          
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

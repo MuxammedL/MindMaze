@@ -16,7 +16,6 @@ export const PostProvider = ({children}) => {
 
                 if (newSeconds < 0) {
                     clearInterval(timerInterval);
-                    console.log('stopped');
                     return 0;
                 }
 

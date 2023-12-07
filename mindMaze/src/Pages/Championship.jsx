@@ -25,7 +25,7 @@ const Championship = () => {
 
                     <div className="message-content">
                         <div className="content-wrapper">
-                            <p>Bu turnir hər hansı bir təşkilat, müəssisə və ya qurumun dəstəyi və sifarişi ilə təşkil ediləcək. Turnir əsasən əyani formada olacaq. Lakin oyunu, gedişatını və nəticələrini burdan izləmək mümkün olacaq.</p>
+                            <p>Bu turnir hər hansı bir təşkilat, müəssisə və ya qurumun dəstəyi və sifarişi ilə təşkil ediləcək. Turnirlər əsasən əyani formada olacaq. Turnirlərdən xəbərdar olmaq, turnirə qeydiyyat və ya turniri canlı izləmək üçün “Çempionat” bölümünü izləməyi unutmayın!ndim</p>
                         </div>
                     </div>
 

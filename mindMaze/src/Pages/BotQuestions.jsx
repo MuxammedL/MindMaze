@@ -61,9 +61,9 @@ const BotQuestions = () => {
 
                     <div className="score-buttons">
 
-                        <Link className='score-button' to="/">
+                        <div className='score-button'>
                             <span>0000</span>
-                        </Link>
+                        </div>
 
                         <Link className='pass-button' to="/gamer-modes">
                             <span>Pass</span>

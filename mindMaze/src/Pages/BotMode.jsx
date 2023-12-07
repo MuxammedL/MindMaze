@@ -16,13 +16,13 @@ const BotMode = () => {
             <span>Sual sayı seçin</span> </div>
           <div className="content">
             <div className="content-wrapper">
-              <Link to="/questions">
+              <Link to="/bot-questions">
                 <span>10</span>
               </Link>
-              <Link to="/questions">
+              <Link to="/bot-questions">
                 <span>15</span>
               </Link>
-              <Link to="/questions">
+              <Link to="/bot-questions">
                 <span>20</span>
               </Link>
             </div>
