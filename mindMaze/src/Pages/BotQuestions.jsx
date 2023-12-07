@@ -1,29 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from "react";
+import {useContext} from "react";
+import {PostContext} from '../context/PostContext'
 
-const Questions = () => {
+const BotQuestions = () => {
 
-    const [seconds, setSeconds] = useState(59);
-
-    useEffect(() => {
-        const timerInterval = setInterval(() => {
-            setSeconds(prevSeconds => {
-                const newSeconds = prevSeconds - 1;
-
-                if (newSeconds < 0) {
-                    clearInterval(timerInterval);
-                    console.log('stopped');
-                    return 0;
-                }
-
-                return newSeconds;
-            });
-        }, 1000);
-
-        return () => clearInterval(timerInterval);
-    }, []);
-
+    const {seconds} = useContext(PostContext)
 
     return (
         <>
@@ -44,14 +26,14 @@ const Questions = () => {
                                 <p>1. Lorem ipsum dolor sit amet consectetur. Est venenatis faucibus egestas aliquet at morbi nascetur turpis convallis. Nec est aenean malesua?</p>
                             </div>
                             <div className="variants">
-                                <div className="variant">
+                                <div className="variant correct">
                                     <div className="variant-wrapper">
                                         <span>A</span>
                                         <p>Aorem ipsum dolor sit</p>
                                     </div>
                                 </div>
 
-                                <div className="variant">
+                                <div className="variant wrong">
                                     <div className="variant-wrapper">
                                         <span>B</span>
                                         <p>Borem ipsum dolor sit</p>
@@ -77,9 +59,9 @@ const Questions = () => {
                     </div>
 
 
-                    <div className="buttons">
+                    <div className="score-buttons">
 
-                        <Link className='scor-button' to="/">
+                        <Link className='score-button' to="/">
                             <span>0000</span>
                         </Link>
 
@@ -94,4 +76,4 @@ const Questions = () => {
     )
 }
 
-export default Questions;
+export default BotQuestions;

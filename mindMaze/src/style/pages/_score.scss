@@ -1,0 +1,35 @@
+.player-scores {
+    .name {
+        text-align: center;
+        padding-top: 200px;
+        padding-bottom: 173px;
+        h2 {
+          font-size: 64px;
+          font-weight: 700;
+          color: #fff;
+          span {
+            color: $primary_color;
+          }
+        }
+    }
+    .scores {
+        @include Flexible($j-cont: center, $a-items:null,$a-cont: center);
+        gap: 40px;
+        .score {
+            .score-owner {
+                margin-bottom: 14px;
+                text-align: center;
+                h3 {
+                    font-size: 32px;
+                    font-weight: 700;
+                    color: $card-color;
+                }
+            }
+            .score-content {
+                @extend %secondary-button;
+                margin-top: 0px;
+                padding: 16px 38px;
+            }
+        }
+    }
+}

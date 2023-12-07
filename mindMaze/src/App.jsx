@@ -7,7 +7,7 @@ import Registration from "./Pages/Registration";
 import PlayerModes from "./Pages/GameModes";
 import GroupPlayerModes from "./Pages/GroupPlayerMode";
 import BotMode from "./Pages/BotMode";
-import Questions from "./Pages/Bot-questions";
+import BotQuestions from "./Pages/BotQuestions";
 import SecondaryLayout from "./components/SecondaryLayout/SecondaryLayout";
 import Profil from "./Pages/Profil";
 import Group from "./Pages/Group";
@@ -15,6 +15,9 @@ import Medals from "./Pages/Medals";
 import DuelsZone from "./Pages/DuelsZone";
 import Championship from "./Pages/Championship";
 import "./style/_global.scss";
+import Result from "./Pages/Result";
+import Score from "./Pages/Score";
+import DuelsQuestions from "./Pages/DuelsQuestions";
 
 function App() {
   return (
@@ -36,13 +39,12 @@ function App() {
             <Route path="group-player-mode" element={<GroupPlayerModes/>}/>
             <Route path="bot-mode" element={<BotMode/>}/>
 
+            <Route path="scores" element={<Score/>}/>
+          <Route path="result" element={<Result/>}/>
 
+          <Route path="bot-questions" element={<BotQuestions/>}/>
+          <Route path="duels-questions" element={<DuelsQuestions/>}/>
 
-
-
-
-
-          <Route path="questions" element={<Questions/>}/>
 
           
           <Route path="*" element={<NotFound />} />

@@ -1,0 +1,55 @@
+
+.result {
+    .result-wrapper {
+        .name {
+            text-align: center;
+            padding-top: 256px;
+            h2 {
+                font-size: 64px;
+                font-weight: 700;
+                color: #fff;
+                span {
+                    color: $primary_color;
+                }
+            }
+        }
+
+        .message-text {
+            text-align: center;
+
+            &.success {
+                padding-top: 82px;
+            }
+            &.warning {
+                padding-top: 50px;
+            }
+
+            h3 {
+                font-size: 48px;
+                font-weight: 700;
+                color: $white-color;
+
+            }
+        } 
+
+
+        .buttons {
+            margin-top: 68px;
+            text-align: center;
+            .scor-button {
+                &.success-btn {
+                    @extend %green-button;
+                }
+                &.warning-btn {
+                    padding: 16px 59px;
+                    @extend %red-button;
+                }
+            }
+    
+            .back-button {
+                margin-top: 68px;
+                @extend %secondary-button;
+            }
+        }
+    }
+}
