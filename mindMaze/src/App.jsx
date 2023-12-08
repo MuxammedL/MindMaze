@@ -21,6 +21,8 @@ import DuelsQuestions from "./Pages/DuelsQuestions";
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 
 function App() {
+  const [connection, setConnection] = useState();
+
   const joinGame = async (token, username, point) => {
     try {
       const newConnection = new HubConnectionBuilder()
@@ -41,13 +43,22 @@ function App() {
       setConnection(newConnection); // Set the connection state
 
       await newConnection.start();
-
       // Invoke BeOnline method and handle any response
-      await newConnection.invoke("BeOnline", { token, username, point });
+
+      await newConnection.invoke("BeOnline", {
+        idToken: token,
+        userName:username,
+        point: point,
+      });
 
       // Invoke GetOnlineUsers and handle the response
       const onlineUsers = await newConnection.invoke("GetOnlineUsers");
+      const onlineFriends = await newConnection.invoke(
+        "GetOnlineFriends",
+        token
+      );
       console.log("Online users:", onlineUsers);
+      console.log("Online friends:", onlineFriends);
     } catch (error) {
       console.error("Error joining game:", error);
     }

@@ -8,11 +8,10 @@ const Entrance = () => {
   const [isAnimating, SetIsAnimating] = useState(false);
   const handleClick = () => {
     SetIsAnimating(!isAnimating);
-    setInterval(() => {
-      navigate('/registration')
-    }, 801);
+    setTimeout(() => {
+      navigate('/registration');
+    }, 900);
   };
-
   return (
     <>
       <main className="entrance">

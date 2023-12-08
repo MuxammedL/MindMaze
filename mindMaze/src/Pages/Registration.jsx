@@ -186,10 +186,10 @@ const Registration = ({ joinGame }) => {
           .then((data) => {
             if (data.isSuccess) {
               handleClick();
-              const { point, token_ID, username } = data.response;
-              const info = { point, token_ID, username };
+              const { point, idToken, userName } = data.response;
+              const info = { point, idToken, userName };
               localStorage.setItem("response", JSON.stringify(info));
-              joinGame(token_ID, username, point);
+              joinGame(idToken, userName, point);
             } else {
               signInErr.classList.add("show");
               console.error("Failed to login:", data.errors.message);
