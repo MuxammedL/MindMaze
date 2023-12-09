@@ -65,7 +65,7 @@ const GroupPlayerModes = ({ connection, setOpponent,setQuestions }) => {
                 <span>Mücadilə</span>
               </div>
             </div>
-            <Link to="/" className="game-mode">
+            <Link to="/challenge" className="game-mode">
               <div className="wrapper">
                 <img src="./images/group-mode.svg" alt="" className="image2" />
                 <span>Meydan oxu</span>
