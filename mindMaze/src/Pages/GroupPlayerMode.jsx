@@ -1,7 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
-const GroupPlayerModes = () => {
+const GroupPlayerModes = ({ connection, setOpponent,setQuestions }) => {
+  const navigate = useNavigate();
+
+  const findOpponent = async (connection) => {
+    try {
+      connection.on("opponentnotfound", () => {
+        setOpponent(null);
+        console.log("Opponent Not Found");
+      });
+      connection.on("OpponentFound", (opponentinfo, questions) => {
+        setOpponent(opponentinfo);
+        localStorage.setItem("opponentinfo", JSON.stringify(opponentinfo));
+        
+        setQuestions(questions.result)
+        console.log("OpponentFound: ", { opponentinfo, questions });
+      });
+      await connection.invoke("FindOpponent");
+    } catch (error) {
+      console.error("Error find opponent:", error);
+    }
+  };
+  const handleClick = () => {
+    findOpponent(connection);
+    navigate("/duels-zone");
+  };
   return (
     <>
       <main className="group-player-mode">
@@ -28,7 +55,7 @@ const GroupPlayerModes = () => {
           </div>
 
           <div className="game-modes">
-            <Link to="/duels-zone" className="game-mode">
+            <div onClick={handleClick} className="game-mode">
               <div className="wrapper">
                 <img
                   src="../images/single-player-mode-2.svg"
@@ -37,12 +64,12 @@ const GroupPlayerModes = () => {
                 />
                 <span>Mücadilə</span>
               </div>
-            </Link>
+            </div>
             <Link to="/" className="game-mode">
-              <Link to='/challenge' className="wrapper">
+              <div className="wrapper">
                 <img src="./images/group-mode.svg" alt="" className="image2" />
                 <span>Meydan oxu</span>
-              </Link>
+              </div>
             </Link>
           </div>
           <Link className="back-button" to="/gamer-modes">

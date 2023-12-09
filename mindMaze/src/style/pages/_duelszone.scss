@@ -1,64 +1,67 @@
 .duels-zone {
-    
-    .vs-bg {
-        position: absolute;
-        top: 220px;
-        left: 88px;
-        width: 275px;
-        height: 525px;
-        background: no-repeat center / contain;
+  .go-back {
+    @extend %secondary-button;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .vs-bg {
+    position: absolute;
+    top: 220px;
+    left: 88px;
+    width: 275px;
+    height: 525px;
+    background: no-repeat center / contain;
+  }
+  .duel-content {
+    padding-top: 135px;
+    .name {
+      text-align: center;
+      padding-bottom: 213px;
+      h2 {
+        font-size: 64px;
+        font-weight: 700;
+        color: #fff;
+        span {
+          color: $primary_color;
+        }
+      }
     }
-    .duel-content {
-        padding-top: 135px;
-        .name {
-            text-align: center;
-            padding-bottom: 213px;
-            h2 {
-              font-size: 64px;
-              font-weight: 700;
-              color: #fff;
-              span {
-                color: $primary_color;
-              }
-            }
+    .duel {
+      @include Flexible(null, null, center, center);
+      .player {
+        .player-img {
+          max-width: 128px;
+          padding: 19px 16px 0;
+          background-color: $card-color;
+          border-radius: 25px;
+          img {
+            width: 95px;
+            height: 108.138px;
+            transform: translateY(6px);
+          }
         }
-        .duel {
-            @include Flexible(null,null,center,center);
-            .player {
-                .player-img {
-                    max-width: 128px;
-                    padding: 19px 16px 0;
-                    background-color: $card-color;
-                    border-radius: 25px;
-                    img {
-                        width: 95px;
-                        height: 108.138px;
-                        transform: translateY(6px);
-                    }
-                }
-                
-            }
-            .vs-img {
-                width: 44px;
-                height: 84px;
-                margin: 0 16px;
-            }
-    
-        }
-        .player-names {
-            @include Flexible(null,null,center,null);
-            .player-name {
-                width: 50%;
-                display: inline-block;
-                margin-top: 10px;
-                // max-width: 200px;
-                text-align: center;
-                p {
-                    font-size: 24px;
-                    color: $card-color;
-                    font-weight: 700;
-                }
-            }
-        }
+      }
+      .vs-img {
+        width: 44px;
+        height: 84px;
+        margin: 0 16px;
+      }
     }
+    .player-names {
+      @include Flexible(null, null, center, null);
+      .player-name {
+        width: 50%;
+        display: inline-block;
+        margin-top: 10px;
+        // max-width: 200px;
+        text-align: center;
+        p {
+          font-size: 24px;
+          color: $card-color;
+          font-weight: 700;
+        }
+      }
+    }
+  }
 }

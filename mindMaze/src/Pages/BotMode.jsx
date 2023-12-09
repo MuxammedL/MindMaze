@@ -1,7 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-const BotMode = () => {
+const BotMode = ({ handleClick }) => {
+  useEffect(() => {
+    const btns = document.querySelectorAll(".content-wrapper .fill");
+    btns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        handleClick();
+      });
+    });
+  }, []);
   return (
     <>
       <main className="bot-mode">
@@ -13,18 +21,34 @@ const BotMode = () => {
           </div>
 
           <div className="d-text">
-            <span>Sual sayı seçin</span> </div>
+            <span>Sual sayı seçin</span>{" "}
+          </div>
           <div className="content">
             <div className="content-wrapper">
-              <Link to="/bot-questions">
+              <div>
+                <div
+                  onClick={handleClick}
+                  className="fill"
+                  data-value={10}
+                ></div>
                 <span>10</span>
-              </Link>
-              <Link to="/bot-questions">
+              </div>
+              <div>
+                <div
+                  onClick={handleClick}
+                  className="fill"
+                  data-value={15}
+                ></div>
                 <span>15</span>
-              </Link>
-              <Link to="/bot-questions">
+              </div>
+              <div>
+                <div
+                  onClick={handleClick}
+                  className="fill"
+                  data-value={20}
+                ></div>
                 <span>20</span>
-              </Link>
+              </div>
             </div>
           </div>
 

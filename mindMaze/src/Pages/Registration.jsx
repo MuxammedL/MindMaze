@@ -186,8 +186,8 @@ const Registration = ({ joinGame }) => {
           .then((data) => {
             if (data.isSuccess) {
               handleClick();
-              const { point, idToken, userName } = data.response;
-              const info = { point, idToken, userName };
+              const { token, point, idToken, userName } = data.response;
+              const info = { point, idToken, userName, token };
               localStorage.setItem("response", JSON.stringify(info));
               joinGame(idToken, userName, point);
             } else {

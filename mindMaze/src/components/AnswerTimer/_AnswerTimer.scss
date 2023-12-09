@@ -1,0 +1,28 @@
+.answer-timer-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  border-bottom: 1px solid #9c9c9c;
+  .progress {
+    height: 5px;
+    transition-duration: 1.1s;
+    width: 0;
+    transition-timing-function: linear;
+    background-color: #ff8a35;
+  }
+}
+
+.timer {
+  position: absolute;
+  // bottom: 100%;
+  top: 133px;
+  right: 43px;
+  z-index: 5;
+  span {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+  }
+}
