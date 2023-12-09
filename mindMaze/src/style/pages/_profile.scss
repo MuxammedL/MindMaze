@@ -1,0 +1,172 @@
+.profile {
+    max-width: 342px;
+    margin: 100px auto 0;
+    .profile-info {
+        position: relative;
+        .notification {
+            position: absolute;
+            top: -6px;
+            right: -2px;
+            background-color: $cyan-blue-color;
+            text-align: center;
+            box-shadow: -1.8px 1.8px 2px 0px rgba(0, 0, 0, 0.25), 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+            padding: 5px 7px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            img {
+                width: 26.25px;
+                height: 30px;
+            }
+
+            .notification-count {
+                position: absolute;
+                top: 0;
+                right: -9px;
+                background-color: $red-color;
+                border-radius: 50%;
+                padding: 1px 2px;
+                width: 22px;
+                height: 22px;
+                span {
+                    display: inline-block;
+                    transform: translateY(-3px);
+                    color: $white-color;
+                    font-size: 13px;
+                    font-weight: 700;
+                }
+            }
+        }
+        .info-wrapper {
+            border-radius: 12px;
+            border: 2px solid $text-color;
+            background-color: $card-color;
+            padding: 34px 40px;
+            .profile-details {
+                @include Flexible($j-cont:space-between,$a-items:center);
+                .profile-img {
+                    img {
+                        width: 59px;
+                        height: 59px;
+                    }
+                }
+
+                .profile-content {
+                    .profile-name {
+                        @include Flexible($j-cont:center,$a-items:center);
+                        gap: 19px;
+                        border-bottom: 2px solid $text-color;
+                        padding-bottom: 2px;
+                        h3 {
+                            font-size: 22px;
+                            font-weight: 700;
+                            color: $text-color;
+                        }
+                        .edit {
+                            img {
+                                width: 19px;
+                                height: 19px;
+                            }
+                        }
+                    }
+                    .id {
+                        font-size: 12px;
+                        font-weight: 700;
+                        color: $text-color;
+                    }
+                }
+            }
+            .profile-score {
+                text-align: center;
+                padding: 8px 0;
+                span {
+                    font-size: 32px;
+                    font-weight: 700;
+                    color: $primary_color;
+                }
+            }
+            .profile-result {
+                @include Flexible($j-cont:space-between,$a-items:center);
+                .result {
+                    &.win-count {
+                        img {
+                            width: 38.25px;
+                            height: 34px;
+
+                        }
+                        .result-title {
+                            h3 {
+                                color: $orange-text-color;
+                                
+                            }
+                        }
+                    }
+
+                    &.defeat-count {
+                        img {
+                            width: 30px;
+                            height: 30px;
+                        }
+                        .result-title {
+                            h3 {
+                                color: $ocean-blue-color;
+                            }
+                        }
+                    }
+
+                    .result-content {
+                        @include Flexible($j-cont:center,$a-items:center);
+                        gap: 8px;
+                        img {
+
+                        }
+                        .result-count {
+                            font-size: 22px;
+                            font-weight: 700;
+                            color: $text-color;
+                        }
+                    }
+                    .result-title {
+                        margin-top: 7px;
+                        h3 {
+                            font-size: 18px;
+                            font-weight: 700;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .profile-menu {
+        margin-top: 67px;
+        ul {
+            li {
+                margin-bottom: 23px;
+                padding: 5px;
+                border-radius: 12px;
+                border: 2px solid $text-color;
+                background-color: $card-color;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+                a {
+                    display: block;
+                    @include Flexible($j-cont:flex-start,$a-items:center);
+                    gap: 40px;
+                    max-width: 279px;
+                    margin-left: auto;
+                    .list-img {
+                        width: 20px;
+                        height: 20px;
+                    }
+                    .list-name {
+                        font-size: 24px;
+                        font-weight: 700;
+                        color: $text-color;
+                    }
+                }
+            }
+        }
+    }
+}

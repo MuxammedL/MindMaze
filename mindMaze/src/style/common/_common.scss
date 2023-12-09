@@ -78,14 +78,14 @@ body{
   font-family: 'Poppins', sans-serif;
 }
 .container {
-  position: relative;
+  // position: relative;
   margin: 0 auto;
   max-width: 430px;
   height: 100vh;
   main{
     height: 100vh;
     background: $bg_gradient_color;
-    position: relative;
+    // position: relative;
     overflow: hidden;
   }
 }
@@ -94,8 +94,6 @@ body{
 h6, h5, h4, h3, h2, h1{
   line-height: 1.2;
 }
-
-
 span {
   font-family: 'Poppins', sans-serif;
 }

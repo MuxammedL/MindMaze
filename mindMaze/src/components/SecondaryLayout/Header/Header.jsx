@@ -64,9 +64,9 @@ const Header = () => {
               <li>
                 <Link
                   data-id="2"
-                  to="medals"
+                  to="ranking"
                   className={`menu-item ${
-                    pathName.includes("/medals") ? "active" : ""
+                    pathName.includes("/ranking") ? "active" : ""
                   }`}
                   style={{
                     backgroundImage: `url('../images/medal-solid.svg')`,
@@ -88,9 +88,9 @@ const Header = () => {
               <li>
                 <Link
                   data-id="4"
-                  to="profil"
+                  to="profile"
                   className={`menu-item ${
-                    pathName.includes("/profil") ? "active" : ""
+                    pathName.includes("/profile") ? "active" : ""
                   }`}
                   style={{ backgroundImage: `url('../images/user-solid.svg')` }}
                 ></Link>

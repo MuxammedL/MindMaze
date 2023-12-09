@@ -39,10 +39,10 @@ const GroupPlayerModes = () => {
               </div>
             </Link>
             <Link to="/" className="game-mode">
-              <div className="wrapper">
+              <Link to='/challenge' className="wrapper">
                 <img src="./images/group-mode.svg" alt="" className="image2" />
                 <span>Meydan oxu</span>
-              </div>
+              </Link>
             </Link>
           </div>
           <Link className="back-button" to="/gamer-modes">

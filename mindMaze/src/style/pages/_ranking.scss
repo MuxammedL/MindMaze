@@ -1,0 +1,109 @@
+.ranking {
+    .ranking-wrapper {
+        .bg-image {
+            margin: 42px auto 33px;
+            width: 205px;
+            height: 164px;
+            background: no-repeat center /contain;
+        }
+        .ranking-content {
+            position: relative;
+            .border-button {
+                cursor: pointer;
+                text-align: center;
+                border-radius: 12px;
+                border: 1px solid #404040;
+                background: #E1F6FF;
+                height: 31px;
+                &:last-child {
+                    height: 19px;
+                }
+                .button-inner {
+                    border-radius: 12px;
+                    height: 100%;
+                    padding: 10px;
+                    box-shadow: 3px -6px 4px 0px rgba(0, 0, 0, 0.25) inset, -3px 2px 4px 0px rgba(0, 0, 0, 0.25) inset;
+                    
+                    span {
+                        color: $primary_color;
+                        font-size: 24px;
+                        font-weight: 700;
+                    }
+                }
+            }
+            .ranking-players {
+                overflow-y: scroll;
+                height: 445px;
+                &::-webkit-scrollbar {
+                    width: 5px;
+                }
+                &::-webkit-scrollbar-track {
+                    border-radius: 5px;
+                    background-color: transparent; 
+                }
+                &::-webkit-scrollbar-thumb {
+                    background-color: #e0e0e0; 
+                    border-radius: 5px; 
+                }
+                &::-webkit-scrollbar-thumb:hover {
+                    background-color: #d8d6d6; 
+                }
+                .player {
+                    &.mine {
+                        width: calc(100% - 4px);
+                        position: absolute;
+                        bottom: 20px;
+                        background-color: #BBF5E5;
+                    }
+                    @include Flexible($j-cont:space-between,$a-items: center);
+                    border-radius: 12px;
+                    border: 1px solid #404040;
+                    background-color: $white-color;
+                    padding: 10px 40px;
+                    .player-wrapper {
+                        @include Flexible($j-cont:space-between,$a-items: center);
+                        gap: 20px;
+                        .player-profile {
+                            display: grid;
+                            place-items: center;
+                            background:  no-repeat center / cover;
+                            width: 65px;
+                            height: 65px;
+                            img {
+                                width: 29.471px;
+                                height: 31.52px;
+                            }
+                        }
+        
+                        .content {
+                            h3 {
+                                font-size: 22px;
+                                font-weight: 700;
+                                color: $text-color;
+        
+                            }
+                            .score {
+                                font-size: 20px;
+                                font-weight: 700;
+                                color: $primary_color;
+                            }
+                        }
+                    }
+        
+                    .player-details {
+                        width: 70px;
+                        text-align: center;
+                        .detail {
+                            width: 100%;
+                            .rank-indicator {
+                                font-size: 32px;
+                                font-weight: 700;
+                                color: $primary_color;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
