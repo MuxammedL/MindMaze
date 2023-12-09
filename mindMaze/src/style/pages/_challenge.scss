@@ -1,0 +1,236 @@
+.challenge {
+    padding-top: 71px;
+    .buttons {
+        position: relative;
+        z-index: 3;
+        padding: 0 40px;
+        @include Flexible($j-cont:space-between,$a-items: stretch);
+        .button {
+            margin: 0;
+            @extend %secondary-button;
+            padding: 8px 14px;
+            span {
+                font-size: 14px;
+            }
+            &.filter-button {
+                padding: 7px 20px;
+                img {
+                    width: 17.75px;
+                    height: 14px;
+                }
+            }
+        }
+    }
+
+    .bg-img {
+        
+        transform: translateY(-16px);
+        margin: 0 auto;
+        width: 153px;
+        height: 140px;
+        background: no-repeat center / contain;
+    }
+
+
+
+    .group-buttons {
+        @include Flexible($j-cont:space-between,$a-items: stretch);
+        margin-top: 37px;
+        .group-button {
+            width: 50%;
+            text-align: center;
+            border-radius: 12px;
+            border: 1px solid #000;
+            background: #E1F6FF;
+            .button-inner {
+                border-radius: 12px;
+                padding: 14.5px 0;
+                &.active {
+                    box-shadow: 3px -6px 4px 0px rgba(0, 0, 0, 0.25) inset, -3px 2px 4px 0px rgba(0, 0, 0, 0.25) inset;
+                }
+                span {
+                    color: $primary_color;
+                    font-size: 24px;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+
+
+    .searchbox {
+        border-radius: 12px;
+        border: 1px solid #000;
+        background: #7EC6C3;
+        padding: 10px 0;
+        .searchbox-wrapper {
+            @include Flexible($j-cont:center,$a-items: center);
+            gap: 10px;
+            input {
+                font-size: 15px;
+                background-color: $white-color;
+                max-width: 287px;
+                @media (min-width: 400px) {
+                    width: 287px;
+                    
+                }
+                padding: 8px 20px;
+                border-radius: 8px;
+                border: 1px solid #000;
+            }
+
+            .search-icon {
+                border-radius: 12px;
+                border: 1px solid #000;
+                background-color: $white-color;
+                padding: 5px 13px;
+                line-height: 19px;
+                img {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+    }
+
+    .global-opponents {
+        .opponent {
+            @include Flexible($j-cont:center,$a-items: center);
+            gap: 37px;
+            @media (min-width: 400px) {
+                gap: 85px;
+            }
+            border-radius: 12px;
+            border: 1px solid #000;
+            background-color: $white-color;
+            padding: 10px 0;
+            .opponent-wrapper {
+                @include Flexible($j-cont:space-between,$a-items: center);
+                gap: 20px;
+                .profile {
+                    display: grid;
+                    place-items: center;
+                    background:  no-repeat center / cover;
+                    width: 65px;
+                    height: 65px;
+                    img {
+                        width: 29.471px;
+                        height: 31.52px;
+                    }
+                }
+
+                .content {
+                    h3 {
+                        font-size: 22px;
+                        font-weight: 700;
+                        color: $text-color;
+
+                    }
+                    .score {
+                        font-size: 20px;
+                        font-weight: 700;
+                        color: $primary_color;
+                    }
+                }
+            }
+
+
+            .sword {
+                position: relative;
+                width: 42px;
+                height: 42px;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+                .plus-icon {
+                    position: absolute;
+                    top: 25.5px;
+                    left: 14px;
+                    width: 15px;
+                    height: 15px;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+
+    .friends-opponents {
+        .opponent {
+            @include Flexible($j-cont:center,$a-items: center);
+            gap: 5px;
+            @media (min-width: 400px) {
+                gap: 30px;
+            }
+            border-radius: 12px;
+            border: 1px solid #000;
+            background-color: $white-color;
+            padding: 10px 0;
+            .opponent-wrapper {
+                @include Flexible($j-cont:space-between,$a-items: center);
+                gap: 20px;
+                .profile {
+                    display: grid;
+                    place-items: center;
+                    background:  no-repeat center / cover;
+                    width: 65px;
+                    height: 65px;
+                    img {
+                        width: 29.471px;
+                        height: 31.52px;
+                    }
+                }
+
+                .content {
+                    h3 {
+                        font-size: 22px;
+                        font-weight: 700;
+                        color: $text-color;
+
+                    }
+                    .score {
+                        font-size: 20px;
+                        font-weight: 700;
+                        color: $primary_color;
+                    }
+                }
+            }
+
+            .opponent-details {
+                @include Flexible($j-cont:center,$a-items: center);
+                .detail {
+                    display: inline-block;
+                    position: relative;
+                    width: 42px;
+                    height: 42px;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                    .plus-icon {
+                        position: absolute;
+                        top: 25.5px;
+                        left: 14px;
+                        width: 15px;
+                        height: 15px;
+                        img {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                }
+                .line {
+                    margin: 0 10px;
+                    display: inline-block;
+                    width: 1px;
+                    height: 26px;
+                    background-color: #000;
+                }
+            }
+        }
+    }
+}
