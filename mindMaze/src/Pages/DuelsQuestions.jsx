@@ -18,19 +18,6 @@ const DuelsQuestions = ({ questions, questionCount, connection, opponent }) => {
     try {
       connection.on("TakeAnswer", (answer) => {
         setOpponentAnswer(answer);
-        if (questions[currentQuestion]) { // Eğer questions dizisinde mevcut soru varsa
-          if (currentQuestion < questions.length - 1) {
-            setCurrentQuestion((prev) => prev + 1);
-          } else {
-            setCurrentQuestion(0);
-            setShowResult(true);
-          }
-          setTimeout(() => {
-            setShowAnswerTimer(true);
-          });
-        } else {
-          console.error('Soru mevcut değil');
-        }
       });
       const opponentinfo = JSON.parse(localStorage.getItem("opponentinfo"));
       console.log(myAnswer, opponentinfo.idToken);
