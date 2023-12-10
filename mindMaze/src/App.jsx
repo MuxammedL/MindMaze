@@ -21,6 +21,7 @@ import Ranking from "./Pages/Ranking";
 import History from "./Pages/History";
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 import Rosettes from "./Pages/Rosettes";
+import Friends from "./Pages/Friends";
 function App() {
   const navigate = useNavigate();
   const [connection, setConnection] = useState();
@@ -117,6 +118,8 @@ function App() {
           </Route>
           <Route path="history" element={<History />}/>
           <Route path="rossetes" element={<Rosettes />}/>
+
+          <Route path="friends" element={<Friends />}/> 
           <Route
             path="group-player-mode"
             element={
