@@ -111,14 +111,14 @@ const Profile = () => {
                         </li>
 
                         <li>
-                            <Link to="">
+                            <Link to="/friends">
                                 <img src="../images/social-icon.svg" alt="" className="list-img"/>
-                                <span className="list-name">Sosial</span>
+                                <span className="list-name">Dostlar</span>
                             </Link>
                         </li>
 
                         <li>
-                            <Link to="">
+                            <Link to="/change-password">
                                 <img src="../images/key-icon.svg" alt="" className="list-img"/>
                                 <span className="list-name">Şifrəni dəyiş</span>
                             </Link>

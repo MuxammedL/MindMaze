@@ -1,0 +1,145 @@
+
+.friends {
+    
+    .friends-wrapper {
+        max-width: 342px;
+        margin: 76px auto 0;
+        .buttons {
+            @include Flexible($j-cont:space-between,$a-items:center);
+            .button {
+                cursor: pointer;
+                margin: 0;
+                @extend %secondary-button;
+                padding: 8px 14px;
+                span {
+                    font-size: 14px;
+                }
+                
+                &.add-button {
+                    margin: 0;
+                    @extend %secondary-button;
+                    padding: 8px 12px;
+                    @include Flexible($j-cont:space-between,$a-items:center);
+                    gap: 10px;
+                    span {
+                        font-size: 14px;
+                    }
+                    img {
+                        width: 25px;
+                        height: 21px;
+                    }
+                }
+            }
+        }
+        .page-title {
+            margin-top: 58px;
+            margin-bottom: 35px;
+            @extend %profile-title;
+            .title-content {
+                .list-img {
+                    width: 28.75px;
+                    height: 23px;
+                }
+
+            }
+        }
+        
+    }
+
+    .add-friends {
+        .friends-inner {
+            .searchbox {
+                border-radius: 12px;
+                border: 1px solid #404040;
+                background: #7EC6C3;
+                padding: 10px 0;
+                .searchbox-wrapper {
+                    @include Flexible($j-cont:center,$a-items: center);
+                    gap: 10px;
+                    input {
+                        font-size: 15px;
+                        background-color: $white-color;
+                        max-width: 287px;
+                        @media (min-width: 400px) {
+                            width: 287px;
+                            
+                        }
+                        padding: 8px 20px;
+                        border-radius: 8px;
+                        border: 1px solid #404040;
+                    }
+        
+                    .search-icon {
+                        border-radius: 12px;
+                        border: 1px solid #404040;
+                        background-color: $white-color;
+                        padding: 5px 13px;
+                        line-height: 19px;
+                        img {
+                            width: 20px;
+                            height: 20px;
+                        }
+                    }
+                }
+            }
+
+            .friends-cards {
+                .friend-card {
+                    &.old-friend {
+                        display: block;
+                    }
+                    &.new-friend {
+                        display: none;
+                        .content {
+                            .name {
+                                font-size: 22px;
+                                font-weight: 700;
+                                color: $text-color;
+                            }
+                            .score {
+                                font-size: 20px;
+                                font-weight: 700;
+                                color: $primary_color;
+                            }
+                        }
+                    }
+                    border-radius: 12px;
+                    border: 1px solid #404040;
+                    background-color: $white-color;
+                    padding: 10px 0;
+                    .card-wrapper {
+                        max-width: 323px;
+                        margin: 0 auto;
+                        @include Flexible($j-cont:space-between,$a-items: center);
+                        .card-content {
+                            @include Flexible($j-cont:center,$a-items: center);
+                            gap: 12px;
+                            .player-profile {
+                                display: grid;
+                                place-items: center;
+                                background:  no-repeat center / cover;
+                                width: 65px;
+                                height: 65px;
+                                img {
+                                    width: 29.471px;
+                                    height: 31.52px;
+                                }
+                            }
+                            .name {
+                                font-size: 22px;
+                                font-weight: 700;
+                                color: $text-color;
+                            }
+                        }
+                        .score {
+                            font-size: 26px;
+                            font-weight: 700;
+                            color: $primary_color;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}
