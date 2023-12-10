@@ -1,8 +1,34 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useState,useEffect } from "react";
 
-const DuelsZone = ({ opponent }) => {
+const DuelsZone = ({ connection,setQuestions,setOpponentMine }) => {
   const navigate = useNavigate();
+  
+  const [opponent, setOpponent] = useState(null);
+  const [show,setShow] = useState(false)
+  useEffect(() => {
+    const findOpponent = async (connection) => {
+      try {
+        connection.on("opponentnotfound", () => {
+          setOpponent(null);
+          setShow(true)
+          console.log("Opponent Not Found");
+        });
+        connection.on("OpponentFound", (opponentinfo, questions) => {
+          setOpponent(opponentinfo);
+          setOpponentMine(opponentinfo)
+          localStorage.setItem("opponentinfo", JSON.stringify(opponentinfo));
+          setQuestions(questions.result);
+          console.log("OpponentFound: ", { opponentinfo, questions });
+        });
+        await connection.invoke("FindOpponent");
+      } catch (error) {
+        console.error("Error find opponent:", error);
+      }
+    };
+    findOpponent(connection)
+  }, []);
 
   if (opponent) {
     setTimeout(() => {
@@ -51,7 +77,7 @@ const DuelsZone = ({ opponent }) => {
               <p>{opponent ? opponent.username : "Oyuncu axtarılır..."}</p>
             </div>
           </div>
-          {!opponent ? (
+          {show ? (
             <Link className="go-back" to="/group-player-mode">
               <span>Geri</span>
             </Link>

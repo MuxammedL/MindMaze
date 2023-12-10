@@ -12,22 +12,47 @@ const DuelsQuestions = ({ questions, questionCount, connection, opponent }) => {
   const [showResult, setShowResult] = useState(false);
   const [showAnswerTimer, setShowAnswerTimer] = useState(true);
   const { question, answers, correctAnswer } = questions[currentQuestion];
-  const [opponentAnswer, setOpponentAnswer] = useState(null);
-  console.log(currentQuestion);
+  const [opponentAnswer, setOpponentAnswer] = useState("");
 
   const sendMyAnswer = async (connection, myAnswer) => {
     try {
       connection.on("TakeAnswer", (answer) => {
         setOpponentAnswer(answer);
-        console.log(answer);
+        if (questions[currentQuestion]) { // Eğer questions dizisinde mevcut soru varsa
+          if (currentQuestion < questions.length - 1) {
+            setCurrentQuestion((prev) => prev + 1);
+          } else {
+            setCurrentQuestion(0);
+            setShowResult(true);
+          }
+          setTimeout(() => {
+            setShowAnswerTimer(true);
+          });
+        } else {
+          console.error('Soru mevcut değil');
+        }
       });
       const opponentinfo = JSON.parse(localStorage.getItem("opponentinfo"));
       console.log(myAnswer, opponentinfo.idToken);
-      await connection.invoke("SendMyAnswer", (opponentinfo.idToken, myAnswer));
+      await connection.invoke("SendMyAnswer", opponentinfo.idToken, myAnswer);
     } catch (error) {
       console.error("Error find opponent:", error);
     }
   };
+
+  const GameFinish = async (connection) => {
+    try {
+      connection.on("DeleteOpponentInfo", () => {
+        console.log("salam");
+      });
+      localStorage.removeItem("opponentinfo");
+
+      await connection.invoke("GameFinished");
+    } catch (error) {
+      console.error("Error find opponent:", error);
+    }
+  };
+  // const logOut
   console.log(opponentAnswer);
   const onAnswerClick = (answer, index) => {
     setAnswerIdx(index);
@@ -37,19 +62,7 @@ const DuelsQuestions = ({ questions, questionCount, connection, opponent }) => {
       setAnswer(false);
     }
   };
-  const onClickPass = () => {
-    setAnswerIdx(null);
-    setShowAnswerTimer(false);
-    if (currentQuestion !== questions.length - 1) {
-      setCurrentQuestion((prev) => prev + 1);
-    } else {
-      setCurrentQuestion(0);
-      setShowResult(true);
-    }
-    setTimeout(() => {
-      setShowAnswerTimer(true);
-    });
-  };
+
   const onClickNext = (finalAnswer) => {
     setAnswerIdx(null);
     setShowAnswerTimer(false);
@@ -66,7 +79,7 @@ const DuelsQuestions = ({ questions, questionCount, connection, opponent }) => {
             wrongAnswers: prev.wrongAnswers + 1,
           }
     );
-    if (currentQuestion !== questions.length - 1) {
+    if (currentQuestion < questions.length - 1) {
       setCurrentQuestion((prev) => prev + 1);
     } else {
       setCurrentQuestion(0);
@@ -76,16 +89,21 @@ const DuelsQuestions = ({ questions, questionCount, connection, opponent }) => {
       setShowAnswerTimer(true);
     });
   };
-  const onTryAgain = () => {
-    setResult(resultInitialState);
-    setShowResult(false);
-  };
+
   const handleTimeUp = () => {
     setAnswer(false);
     onClickNext(false);
   };
+  // useEffect(() => {
+  //   console.log(`${opponentAnswer===''?'islemedi':'isledi'}`)
+    
+  // }, [opponentAnswer]);
   useEffect(() => {
     const variants = document.querySelectorAll(".variants .variant");
+    document.querySelector(".wrong") &&
+      document.querySelector(".wrong").classList.remove("wrong");
+    document.querySelector(".correct") &&
+      document.querySelector(".correct").classList.remove("correct");
     variants.forEach((variant) => {
       variant.addEventListener("click", handleClick);
     });
@@ -97,7 +115,6 @@ const DuelsQuestions = ({ questions, questionCount, connection, opponent }) => {
       sendMyAnswer(connection, this.dataset.choice);
       if (this.dataset.choice === correctAnswer) {
         this.classList.add("correct");
-
         setTimeout(() => {
           onClickNext(true);
         }, 750);
@@ -108,8 +125,11 @@ const DuelsQuestions = ({ questions, questionCount, connection, opponent }) => {
         }, 750);
       }
     }
-  }, [answers]);
+  }, [answer]);
 
+  if (showResult) {
+     GameFinish(connection);
+  }
   return (
     <>
       {!showResult ? (
@@ -139,7 +159,7 @@ const DuelsQuestions = ({ questions, questionCount, connection, opponent }) => {
                       answers.map((choice, index) => (
                         <li
                           onClick={() => onAnswerClick(choice, index)}
-                          key={choice}
+                          key={index}
                           className={`variant`}
                           data-choice={choice}
                         >
@@ -178,7 +198,7 @@ const DuelsQuestions = ({ questions, questionCount, connection, opponent }) => {
                 <div className="score opponent-score">
                   <div className="score-wrapper">
                     <div className="score-owner">
-                      <h3>{opponent.username}</h3>
+                      <h3>{opponent && opponent.username}</h3>
                     </div>
                     <div className="score-button">
                       <span>0000</span>

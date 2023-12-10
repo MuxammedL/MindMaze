@@ -8,6 +8,7 @@
       position: absolute;
       top: -6px;
       right: -2px;
+      z-index: 5;
       background-color: $cyan-blue-color;
       text-align: center;
       box-shadow: -1.8px 1.8px 2px 0px rgba(0, 0, 0, 0.25),
@@ -189,7 +190,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     z-index: 2;
     width: 342px;
     padding: 40px 16px;
@@ -232,16 +233,18 @@
 .notification-offcanvas {
   // position: relative;
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     z-index: 10;
     background-color: #000;
-    opacity: .25;
     width: 100%;
     height: 100%;
-  } 
+    visibility: hidden;
+    opacity: 0;
+  }
+
   .offcanvas {
     position: absolute;
     z-index: 999;
@@ -250,6 +253,8 @@
     width: 400px;
     height: 740px;
     overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
     .offcanvas-wrapper {
       height: 100%;
       width: 100%;
@@ -258,7 +263,7 @@
       padding: 20px 0 20px 20px;
       .notifications {
         .close-button {
-          margin-bottom: 30px;
+          margin-bottom: 10px;
           cursor: pointer;
           background-color: $red-color;
           padding: 9px 10px 7px;
@@ -271,20 +276,20 @@
         .notifications-container {
           .notifications-inner {
             overflow-y: scroll;
-            height: 740px;
+            height: 640px;
             &::-webkit-scrollbar {
               width: 5px;
             }
             &::-webkit-scrollbar-track {
               border-radius: 5px;
-              background-color: transparent; 
+              background-color: transparent;
             }
             &::-webkit-scrollbar-thumb {
-              background-color: #e0e0e0; 
-              border-radius: 5px; 
+              background-color: #e0e0e0;
+              border-radius: 5px;
             }
             &::-webkit-scrollbar-thumb:hover {
-              background-color: #d8d6d6; 
+              background-color: #d8d6d6;
             }
             .notification {
               transform: translateX(28px);
@@ -297,9 +302,9 @@
               }
               border-radius: 12px 0px 0px 12px;
               border-top: 1px solid $text-color;
-  
+
               border-bottom: 1px solid $text-color;
-  
+
               border-left: 1px solid $text-color;
               max-width: 345px;
               padding: 12px 30px 14px 30px;
@@ -310,15 +315,15 @@
                   color: $text-color;
                 }
               }
-          
+
               .notification-details {
                 margin-top: 8px;
                 @include Flexible($j-cont: space-between, $a-items: center);
-                .notification-buttons{
+                .notification-buttons {
                   .reject-button {
                     margin-right: 25px;
                     border-radius: 4px;
-                    padding: 4px 5.5px ;
+                    padding: 4px 5.5px;
                     background-color: $red-color;
                     img {
                       transform: translateY(2px);
@@ -340,12 +345,9 @@
                 .notification-time {
                   font-size: 12px;
                   font-weight: 300;
-                  
+
                   .time {
                     margin-right: 15px;
-                  }
-                  .day {
-        
                   }
                 }
               }
@@ -355,10 +357,14 @@
       }
     }
   }
-
-
-
+  &.show {
+    &::after {
+      opacity: 0.25;
+      visibility: visible;
+    }
+    .offcanvas {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 }
-
-
-

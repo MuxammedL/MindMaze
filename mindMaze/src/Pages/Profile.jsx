@@ -8,12 +8,20 @@ const Profile = () => {
     useEffect(() => {
         const logOut = document.querySelector(".logout")
         const logOutContent = document.querySelector(".logout-modal")
-        
+        const offcanvas = document.querySelector('.offcanvas')
+        const notificationIndicator = document.querySelector('.notification-indicator')
+        const closeButton = document.querySelector('.close-button')
+
         logOut.addEventListener("click", () => {
             logOutContent.classList.add('show')
         })
+        notificationIndicator.addEventListener("click", () => {
+            offcanvas.parentElement.classList.add('show')
+        })
+        closeButton.addEventListener('click',()=>{
+            offcanvas.parentElement.classList.remove('show')
+        })
         const noBtn = document.querySelector(".no-button")
-
         noBtn.addEventListener("click", () => {
             logOutContent.classList.remove('show')
         })
@@ -21,7 +29,11 @@ const Profile = () => {
 
     })
 
-
+    const handleClick =()=>{
+        localStorage.setItem("navbar", "gamer-modes");
+        localStorage.removeItem('response')
+        localStorage.removeItem('opponentinfo')
+    }
 
 
     return (
@@ -133,7 +145,7 @@ const Profile = () => {
                             <button className="modal-button no-button">
                                 <span>Xeyr</span>
                             </button>
-                            <Link to="/registration" className="modal-button yes-button">
+                            <Link onClick={handleClick} to="/registration" className="modal-button yes-button">
                                 <span>Bəli</span>
                             </Link>
                         </div>

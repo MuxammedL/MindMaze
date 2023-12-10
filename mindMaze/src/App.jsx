@@ -21,7 +21,6 @@ import Ranking from "./Pages/Ranking";
 import History from "./Pages/History";
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 import Rosettes from "./Pages/Rosettes";
-
 function App() {
   const navigate = useNavigate();
   const [connection, setConnection] = useState();
@@ -71,7 +70,7 @@ function App() {
       newConnection.on("RecMessage", (str1, str2) => {
         console.log(str1, str2);
       });
-
+      
       setConnection(newConnection);
       await newConnection.start();
       // Invoke BeOnline method and handle any response
@@ -80,7 +79,7 @@ function App() {
         idToken: token,
         userName: username,
         point: point,
-      });
+      });  
 
       // Invoke GetOnlineUsers and handle the response
       // const onlineUsers = await newConnection.invoke("GetOnlineUsers");
@@ -105,7 +104,9 @@ function App() {
           />
           <Route
             path="duels-zone"
-            element={<DuelsZone opponent={opponent} />}
+            element={<DuelsZone opponent={opponent} connection={connection}
+            setOpponentMine={setOpponent}
+            setQuestions={setQuestions}/>}
           />
 
           <Route path="/gamer-modes" element={<SecondaryLayout />}>
@@ -114,22 +115,17 @@ function App() {
             <Route path="championship" element={<Championship />} />
             <Route path="ranking" element={<Ranking />} />
           </Route>
-
-          
           <Route path="history" element={<History />}/>
           <Route path="rossetes" element={<Rosettes />}/>
-
-
           <Route
             path="group-player-mode"
             element={
               connection && (
                 <GroupPlayerModes
-                connection={connection}
-                setOpponent={setOpponent}
-                setQuestions={setQuestions}
+                  connection={connection}
+                  setQuestions={setQuestions}
                 />
-                )
+              )
             }
           />
           <Route
@@ -141,16 +137,17 @@ function App() {
           <Route path="result" element={<Result />} />
 
 
+
           <Route
             path="bot-questions"
             element={
               questions && (
                 <BotQuestions
-                questions={questions}
-                questionCount={questionCount}
+                  questions={questions}
+                  questionCount={questionCount}
                 />
-                )
-              }
+              )
+            }
           />
           <Route
             path="duels-questions"

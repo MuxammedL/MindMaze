@@ -7,26 +7,25 @@ import { useState, useEffect } from "react";
 const GroupPlayerModes = ({ connection, setOpponent,setQuestions }) => {
   const navigate = useNavigate();
 
-  const findOpponent = async (connection) => {
-    try {
-      connection.on("opponentnotfound", () => {
-        setOpponent(null);
-        console.log("Opponent Not Found");
-      });
-      connection.on("OpponentFound", (opponentinfo, questions) => {
-        setOpponent(opponentinfo);
-        localStorage.setItem("opponentinfo", JSON.stringify(opponentinfo));
-        
-        setQuestions(questions.result)
-        console.log("OpponentFound: ", { opponentinfo, questions });
-      });
-      await connection.invoke("FindOpponent");
-    } catch (error) {
-      console.error("Error find opponent:", error);
-    }
-  };
+  // const findOpponent = async (connection) => {
+  //   try {
+  //     connection.on("opponentnotfound", () => {
+  //       setOpponent(null);
+  //       console.log("Opponent Not Found");
+  //     });
+  //     connection.on("OpponentFound", (opponentinfo, questions) => {
+  //       setOpponent(opponentinfo);
+  //       localStorage.setItem("opponentinfo", JSON.stringify(opponentinfo));
+  //       setQuestions(questions.result)
+  //       console.log("OpponentFound: ", { opponentinfo, questions });
+  //     });
+  //     await connection.invoke("FindOpponent");
+  //   } catch (error) {
+  //     console.error("Error find opponent:", error);
+  //   }
+  // };
   const handleClick = () => {
-    findOpponent(connection);
+    // findOpponent(connection);
     navigate("/duels-zone");
   };
   return (

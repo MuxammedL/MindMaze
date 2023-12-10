@@ -32,7 +32,12 @@
       text-align: center;
       .scor-button {
         &.success-btn {
-          @extend %green-button;
+          @extend %secondary-button;
+          padding: 17px 67px;
+          span {
+            font-size: 30px;
+            font-weight: 700;
+          }
         }
         &.warning-btn {
           padding: 16px 59px;
