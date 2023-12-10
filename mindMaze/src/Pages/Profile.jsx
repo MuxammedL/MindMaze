@@ -3,12 +3,33 @@ import { Link } from "react-router-dom"
 
 
 const Profile = () => {
+
+
+    useEffect(() => {
+        const logOut = document.querySelector(".logout")
+        const logOutContent = document.querySelector(".logout-modal")
+        
+        logOut.addEventListener("click", () => {
+            logOutContent.classList.add('show')
+        })
+        const noBtn = document.querySelector(".no-button")
+
+        noBtn.addEventListener("click", () => {
+            logOutContent.classList.remove('show')
+        })
+
+
+    })
+
+
+
+
     return (
         <>
         <main>
             <div className="profile">
                 <div className="profile-info">
-                    <div className="notification">
+                    <div className="notification-indicator">
                         <img src="../images/notification.svg" alt="" />
                         <div className="notification-count">
                             <span>12</span>
@@ -71,7 +92,7 @@ const Profile = () => {
                         </li>
 
                         <li>
-                            <Link to="">
+                            <Link to="/rossetes">
                                 <img src="../images/rosette-icon.svg" alt="" className="list-img"/>
                                 <span className="list-name">Rozetlərim</span>
                             </Link>
@@ -91,7 +112,7 @@ const Profile = () => {
                             </Link>
                         </li>
 
-                        <li>
+                        <li className="logout">
                             <Link to="">
                                 <img src="../images/logout-icon.svg" alt="" className="list-img"/>
                                 <span className="list-name">Çıxış</span>
@@ -100,7 +121,266 @@ const Profile = () => {
                     </ul>
                 </div>
             </div>
+
+
+            <div className="logout-modal">
+                <div className="modal">
+                    <div className="modal-inner">
+                        <div className="modal-text">
+                            <p>Çıxmaq istədiyinizə əminsiniz?</p>
+                        </div>
+                        <div className="modal-buttons">
+                            <button className="modal-button no-button">
+                                <span>Xeyr</span>
+                            </button>
+                            <Link to="/registration" className="modal-button yes-button">
+                                <span>Bəli</span>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
+
+        <div className="notification-offcanvas">
+            <div className="offcanvas">
+                <div className="offcanvas-wrapper">
+                    <div className="notifications">
+                        <button className="close-button">
+                            <img src="../images/close-icon.svg" alt="" />
+                        </button>
+
+                        <div className="notifications-container">
+                            <div className="notifications-inner">
+                                <div className="notification  notification-1">
+                                    <div className="notification-title">
+                                        <h2>Apokalipsi sənə dostluq istəyi göndərdi</h2>
+                                    </div>
+                                    <div className="notification-details">
+                                        <div className="notification-buttons">
+                                            <button className="reject-button button">
+                                                <img src="../images/close-icon-small.svg" alt="" />
+                                            </button>
+                                            <button className="access-button button">
+                                                <img src="../images/tick-icon.svg" alt="" />
+                                            </button>
+                                        </div>
+                                        <div className="notification-time">
+                                            <span className="time">indi</span>
+                                            <span className="day">Bu gün</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="notification  notification-2">
+                                    <div className="notification-title">
+                                        <h2>Apokalipsi sənə dostluq istəyi göndərdi</h2>
+                                    </div>
+                                    <div className="notification-details">
+                                        <div className="notification-buttons">
+                                            <button className="reject-button button">
+                                                <img src="../images/close-icon-small.svg" alt="" />
+                                            </button>
+                                            <button className="access-button button">
+                                                <img src="../images/tick-icon.svg" alt="" />
+                                            </button>
+                                        </div>
+                                        <div className="notification-time">
+                                            <span className="time">indi</span>
+                                            <span className="day">Bu gün</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="notification  notification-3">
+                                    <div className="notification-title">
+                                        <h2>Apokalipsi sənə dostluq istəyi göndərdi</h2>
+                                    </div>
+                                    <div className="notification-details">
+                                        <div className="notification-buttons">
+                                            <button className="reject-button button">
+                                                <img src="../images/close-icon-small.svg" alt="" />
+                                            </button>
+                                            <button className="access-button button">
+                                                <img src="../images/tick-icon.svg" alt="" />
+                                            </button>
+                                        </div>
+                                        <div className="notification-time">
+                                            <span className="time">indi</span>
+                                            <span className="day">Bu gün</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="notification  notification-1">
+                                    <div className="notification-title">
+                                        <h2>Apokalipsi sənə dostluq istəyi göndərdi</h2>
+                                    </div>
+                                    <div className="notification-details">
+                                        <div className="notification-buttons">
+                                            <button className="reject-button button">
+                                                <img src="../images/close-icon-small.svg" alt="" />
+                                            </button>
+                                            <button className="access-button button">
+                                                <img src="../images/tick-icon.svg" alt="" />
+                                            </button>
+                                        </div>
+                                        <div className="notification-time">
+                                            <span className="time">indi</span>
+                                            <span className="day">Bu gün</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="notification  notification-1">
+                                    <div className="notification-title">
+                                        <h2>Apokalipsi sənə dostluq istəyi göndərdi</h2>
+                                    </div>
+                                    <div className="notification-details">
+                                        <div className="notification-buttons">
+                                            <button className="reject-button button">
+                                                <img src="../images/close-icon-small.svg" alt="" />
+                                            </button>
+                                            <button className="access-button button">
+                                                <img src="../images/tick-icon.svg" alt="" />
+                                            </button>
+                                        </div>
+                                        <div className="notification-time">
+                                            <span className="time">indi</span>
+                                            <span className="day">Bu gün</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="notification  notification-1">
+                                    <div className="notification-title">
+                                        <h2>Apokalipsi sənə dostluq istəyi göndərdi</h2>
+                                    </div>
+                                    <div className="notification-details">
+                                        <div className="notification-buttons">
+                                            <button className="reject-button button">
+                                                <img src="../images/close-icon-small.svg" alt="" />
+                                            </button>
+                                            <button className="access-button button">
+                                                <img src="../images/tick-icon.svg" alt="" />
+                                            </button>
+                                        </div>
+                                        <div className="notification-time">
+                                            <span className="time">indi</span>
+                                            <span className="day">Bu gün</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="notification  notification-1">
+                                    <div className="notification-title">
+                                        <h2>Apokalipsi sənə dostluq istəyi göndərdi</h2>
+                                    </div>
+                                    <div className="notification-details">
+                                        <div className="notification-buttons">
+                                            <button className="reject-button button">
+                                                <img src="../images/close-icon-small.svg" alt="" />
+                                            </button>
+                                            <button className="access-button button">
+                                                <img src="../images/tick-icon.svg" alt="" />
+                                            </button>
+                                        </div>
+                                        <div className="notification-time">
+                                            <span className="time">indi</span>
+                                            <span className="day">Bu gün</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="notification  notification-1">
+                                    <div className="notification-title">
+                                        <h2>Apokalipsi sənə dostluq istəyi göndərdi</h2>
+                                    </div>
+                                    <div className="notification-details">
+                                        <div className="notification-buttons">
+                                            <button className="reject-button button">
+                                                <img src="../images/close-icon-small.svg" alt="" />
+                                            </button>
+                                            <button className="access-button button">
+                                                <img src="../images/tick-icon.svg" alt="" />
+                                            </button>
+                                        </div>
+                                        <div className="notification-time">
+                                            <span className="time">indi</span>
+                                            <span className="day">Bu gün</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="notification  notification-1">
+                                    <div className="notification-title">
+                                        <h2>Apokalipsi sənə dostluq istəyi göndərdi</h2>
+                                    </div>
+                                    <div className="notification-details">
+                                        <div className="notification-buttons">
+                                            <button className="reject-button button">
+                                                <img src="../images/close-icon-small.svg" alt="" />
+                                            </button>
+                                            <button className="access-button button">
+                                                <img src="../images/tick-icon.svg" alt="" />
+                                            </button>
+                                        </div>
+                                        <div className="notification-time">
+                                            <span className="time">indi</span>
+                                            <span className="day">Bu gün</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="notification  notification-1">
+                                    <div className="notification-title">
+                                        <h2>Apokalipsi sənə dostluq istəyi göndərdi</h2>
+                                    </div>
+                                    <div className="notification-details">
+                                        <div className="notification-buttons">
+                                            <button className="reject-button button">
+                                                <img src="../images/close-icon-small.svg" alt="" />
+                                            </button>
+                                            <button className="access-button button">
+                                                <img src="../images/tick-icon.svg" alt="" />
+                                            </button>
+                                        </div>
+                                        <div className="notification-time">
+                                            <span className="time">indi</span>
+                                            <span className="day">Bu gün</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="notification  notification-1">
+                                    <div className="notification-title">
+                                        <h2>Apokalipsi sənə dostluq istəyi göndərdi</h2>
+                                    </div>
+                                    <div className="notification-details">
+                                        <div className="notification-buttons">
+                                            <button className="reject-button button">
+                                                <img src="../images/close-icon-small.svg" alt="" />
+                                            </button>
+                                            <button className="access-button button">
+                                                <img src="../images/tick-icon.svg" alt="" />
+                                            </button>
+                                        </div>
+                                        <div className="notification-time">
+                                            <span className="time">indi</span>
+                                            <span className="day">Bu gün</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         </>
     )
 }

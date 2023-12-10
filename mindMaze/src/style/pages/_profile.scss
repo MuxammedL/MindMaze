@@ -1,9 +1,10 @@
 .profile {
+  position: relative;
   max-width: 342px;
   margin: 70px auto 0;
   .profile-info {
     position: relative;
-    .notification {
+    .notification-indicator {
       position: absolute;
       top: -6px;
       right: -2px;
@@ -141,7 +142,7 @@
         margin-bottom: 23px;
         padding: 5px;
         border-radius: 12px;
-        border: 2px solid $text-color;
+        border: 1px solid $text-color;
         background-color: $card-color;
         &:last-child {
           margin-bottom: 0;
@@ -150,7 +151,7 @@
           display: block;
           @include Flexible($j-cont: flex-start, $a-items: center);
           gap: 40px;
-          max-width: 279px;
+          max-width: 282px;
           margin-left: auto;
           .list-img {
             width: 20px;
@@ -166,3 +167,198 @@
     }
   }
 }
+.logout-modal {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  &.show {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+  }
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: 100%;
+  max-width: 430px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.258);
+  .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 2;
+    width: 342px;
+    padding: 40px 16px;
+    border-radius: 12px;
+    border: 1px solid $text-color;
+    background-color: $white-color;
+    .modal-inner {
+      .modal-text {
+        p {
+          text-align: center;
+          color: $text-color;
+          font-size: 24px;
+          font-weight: 700;
+        }
+      }
+      .modal-buttons {
+        margin-top: 30px;
+        @include Flexible($j-cont: center, $a-items: center);
+        gap: 53px;
+        .modal-button {
+          padding: 8px 25px;
+          background-color: $primary_color;
+          border-radius: 12px;
+          cursor: pointer;
+          &.yes-button {
+            background-color: $cyan-blue-color;
+          }
+
+          span {
+            font-size: 20px;
+            font-weight: 700;
+            color: $card-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+.notification-offcanvas {
+  // position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-color: #000;
+    opacity: .25;
+    width: 100%;
+    height: 100%;
+  } 
+  .offcanvas {
+    position: absolute;
+    z-index: 999;
+    top: 20px;
+    right: 0;
+    width: 400px;
+    height: 740px;
+    overflow: hidden;
+    .offcanvas-wrapper {
+      height: 100%;
+      width: 100%;
+      background-color: $card-color;
+      border-radius: 14px 0px 0px 14px;
+      padding: 20px 0 20px 20px;
+      .notifications {
+        .close-button {
+          margin-bottom: 30px;
+          cursor: pointer;
+          background-color: $red-color;
+          padding: 9px 10px 7px;
+          border-radius: 50%;
+          img {
+            width: 21px;
+            height: 21px;
+          }
+        }
+        .notifications-container {
+          .notifications-inner {
+            overflow-y: scroll;
+            height: 740px;
+            &::-webkit-scrollbar {
+              width: 5px;
+            }
+            &::-webkit-scrollbar-track {
+              border-radius: 5px;
+              background-color: transparent; 
+            }
+            &::-webkit-scrollbar-thumb {
+              background-color: #e0e0e0; 
+              border-radius: 5px; 
+            }
+            &::-webkit-scrollbar-thumb:hover {
+              background-color: #d8d6d6; 
+            }
+            .notification {
+              transform: translateX(28px);
+              margin-bottom: 5px;
+              &:last-child {
+                margin-bottom: 0;
+              }
+              &.notification-1 {
+                background-color: $win-card-color;
+              }
+              border-radius: 12px 0px 0px 12px;
+              border-top: 1px solid $text-color;
+  
+              border-bottom: 1px solid $text-color;
+  
+              border-left: 1px solid $text-color;
+              max-width: 345px;
+              padding: 12px 30px 14px 30px;
+              .notification-title {
+                h2 {
+                  font-size: 14px;
+                  font-weight: 600;
+                  color: $text-color;
+                }
+              }
+          
+              .notification-details {
+                margin-top: 8px;
+                @include Flexible($j-cont: space-between, $a-items: center);
+                .notification-buttons{
+                  .reject-button {
+                    margin-right: 25px;
+                    border-radius: 4px;
+                    padding: 4px 5.5px ;
+                    background-color: $red-color;
+                    img {
+                      transform: translateY(2px);
+                      width: 14px;
+                      height: 14px;
+                    }
+                  }
+                  .access-button {
+                    border-radius: 4px;
+                    padding: 4px 2.5px;
+                    background-color: $green-color;
+                    img {
+                      transform: translateY(2px);
+                      width: 20px;
+                      height: 14px;
+                    }
+                  }
+                }
+                .notification-time {
+                  font-size: 12px;
+                  font-weight: 300;
+                  
+                  .time {
+                    margin-right: 15px;
+                  }
+                  .day {
+        
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+
+}
+
+
+

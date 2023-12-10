@@ -10,7 +10,6 @@ import BotMode from "./Pages/BotMode";
 import BotQuestions from "./Pages/BotQuestions";
 import SecondaryLayout from "./components/SecondaryLayout/SecondaryLayout";
 import Profile from "./Pages/Profile";
-import Group from "./Pages/Group";
 import DuelsZone from "./Pages/DuelsZone";
 import Championship from "./Pages/Championship";
 import Result from "./Pages/Result";
@@ -21,6 +20,7 @@ import "./style/_global.scss";
 import Ranking from "./Pages/Ranking";
 import History from "./Pages/History";
 import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
+import Rosettes from "./Pages/Rosettes";
 
 function App() {
   const navigate = useNavigate();
@@ -111,20 +111,25 @@ function App() {
           <Route path="/gamer-modes" element={<SecondaryLayout />}>
             <Route index element={<PlayerModes />} />
             <Route path="profile" element={<Profile />} />
-            <Route path="group" element={<Group />} />
             <Route path="championship" element={<Championship />} />
             <Route path="ranking" element={<Ranking />} />
           </Route>
+
+          
+          <Route path="history" element={<History />}/>
+          <Route path="rossetes" element={<Rosettes />}/>
+
+
           <Route
             path="group-player-mode"
             element={
               connection && (
                 <GroupPlayerModes
-                  connection={connection}
-                  setOpponent={setOpponent}
-                  setQuestions={setQuestions}
+                connection={connection}
+                setOpponent={setOpponent}
+                setQuestions={setQuestions}
                 />
-              )
+                )
             }
           />
           <Route
@@ -135,18 +140,17 @@ function App() {
           <Route path="scores" element={<Score />} />
           <Route path="result" element={<Result />} />
 
-          <Route path="history" element={<History />} />
 
           <Route
             path="bot-questions"
             element={
               questions && (
                 <BotQuestions
-                  questions={questions}
-                  questionCount={questionCount}
+                questions={questions}
+                questionCount={questionCount}
                 />
-              )
-            }
+                )
+              }
           />
           <Route
             path="duels-questions"
