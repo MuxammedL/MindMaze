@@ -1,23 +1,25 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
-const DuelsZone = ({ connection,setQuestions,setOpponentMine }) => {
+const DuelsZone = ({ connection, setQuestions, setOpponentMine }) => {
   const navigate = useNavigate();
-  
+
   const [opponent, setOpponent] = useState(null);
-  const [show,setShow] = useState(false)
+  const [notFound, setNotFound] = useState(false);
+  const [show, setShow] = useState(false);
   useEffect(() => {
     const findOpponent = async (connection) => {
       try {
         connection.on("opponentnotfound", () => {
           setOpponent(null);
-          setShow(true)
+          setShow(true);
+          setNotFound(true)
           console.log("Opponent Not Found");
         });
         connection.on("OpponentFound", (opponentinfo, questions) => {
           setOpponent(opponentinfo);
-          setOpponentMine(opponentinfo)
+          setOpponentMine(opponentinfo);
           localStorage.setItem("opponentinfo", JSON.stringify(opponentinfo));
           setQuestions(questions.result);
           console.log("OpponentFound: ", { opponentinfo, questions });
@@ -27,7 +29,7 @@ const DuelsZone = ({ connection,setQuestions,setOpponentMine }) => {
         console.error("Error find opponent:", error);
       }
     };
-    findOpponent(connection)
+    findOpponent(connection);
   }, []);
 
   if (opponent) {
@@ -74,7 +76,13 @@ const DuelsZone = ({ connection,setQuestions,setOpponentMine }) => {
             </div>
 
             <div className="player-name">
-              <p>{opponent ? opponent.username : "Oyuncu axtarılır..."}</p>
+              <p>
+                {opponent
+                  ? opponent.username
+                  : notFound
+                  ? "Oyunçu tapılmadı"
+                  : "Oyunçu axtarılır..."}
+              </p>
             </div>
           </div>
           {show ? (

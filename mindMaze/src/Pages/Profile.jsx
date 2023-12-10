@@ -34,6 +34,7 @@ const Profile = () => {
         localStorage.removeItem('response')
         localStorage.removeItem('opponentinfo')
     }
+   const response = JSON.parse(localStorage.getItem("response"));
 
 
     return (
@@ -55,26 +56,26 @@ const Profile = () => {
 
                             <div className="profile-content">
                                 <div className="profile-name">
-                                    <h3>Apokalipsis</h3>
+                                    <h3>{response&&response.userName}</h3>
 
                                     <div className="edit">
                                         <img src="../images/edit-icon.svg" alt="" />
                                     </div>
                                 </div>
                                 <div className="id">
-                                    ID:<span> 5MIN</span>
+                                    ID:<span> {response&&response.idToken}</span>
                                 </div>
 
                             </div>
                         </div>
                         <div className="profile-score">
-                            <span>10000</span>
+                            <span>{response&&response.point}</span>
                         </div>
                         <div className="profile-result">
                             <div className="win-count result">
                                 <div className="result-content">
                                     <img src="../images/crown-win.svg" alt="" />
-                                    <span className="result-count">1000</span>
+                                    <span className="result-count">35</span>
                                 </div>
                                 <div className="result-title">
                                     <h3>Qalibiyyət</h3>
@@ -84,7 +85,7 @@ const Profile = () => {
                             <div className="defeat-count result">
                                 <div className="result-content">
                                     <img src="../images/skull-defeat.svg" alt="" />
-                                    <span className="result-count">1000</span>
+                                    <span className="result-count">23</span>
                                 </div>
                                 <div className="result-title">
                                     <h3>Məğlubiyyət</h3>

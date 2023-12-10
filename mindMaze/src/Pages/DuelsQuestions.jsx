@@ -14,24 +14,9 @@ const DuelsQuestions = ({ questions, questionCount, connection, opponent }) => {
   const { question, answers, correctAnswer } = questions[currentQuestion];
   const [opponentAnswer, setOpponentAnswer] = useState("");
 
-  const sendMyAnswer = async (connection, myAnswer) => {
-    try {
-      connection.on("TakeAnswer", (answer) => {
-        setOpponentAnswer(answer);
-      });
-      const opponentinfo = JSON.parse(localStorage.getItem("opponentinfo"));
-      console.log(myAnswer, opponentinfo.idToken);
-      await connection.invoke("SendMyAnswer", opponentinfo.idToken, myAnswer);
-    } catch (error) {
-      console.error("Error find opponent:", error);
-    }
-  };
-
   const GameFinish = async (connection) => {
     try {
-      connection.on("DeleteOpponentInfo", () => {
-        console.log("salam");
-      });
+      connection.on("DeleteOpponentInfo");
       localStorage.removeItem("opponentinfo");
 
       await connection.invoke("GameFinished");
@@ -39,8 +24,7 @@ const DuelsQuestions = ({ questions, questionCount, connection, opponent }) => {
       console.error("Error find opponent:", error);
     }
   };
-  // const logOut
-  console.log(opponentAnswer);
+
   const onAnswerClick = (answer, index) => {
     setAnswerIdx(index);
     if (answer === correctAnswer) {
@@ -66,7 +50,7 @@ const DuelsQuestions = ({ questions, questionCount, connection, opponent }) => {
             wrongAnswers: prev.wrongAnswers + 1,
           }
     );
-    if (currentQuestion < questions.length - 1) {
+    if (currentQuestion !== questions.length - 1) {
       setCurrentQuestion((prev) => prev + 1);
     } else {
       setCurrentQuestion(0);
@@ -83,7 +67,7 @@ const DuelsQuestions = ({ questions, questionCount, connection, opponent }) => {
   };
   // useEffect(() => {
   //   console.log(`${opponentAnswer===''?'islemedi':'isledi'}`)
-    
+
   // }, [opponentAnswer]);
   useEffect(() => {
     const variants = document.querySelectorAll(".variants .variant");
@@ -91,6 +75,16 @@ const DuelsQuestions = ({ questions, questionCount, connection, opponent }) => {
       document.querySelector(".wrong").classList.remove("wrong");
     document.querySelector(".correct") &&
       document.querySelector(".correct").classList.remove("correct");
+    // try {
+    //   connection.on("TakeAnswer", (answer) => {
+    //     setOpponentAnswer(answer);
+    //   });
+    //   const opponentinfo = JSON.parse(localStorage.getItem("opponentinfo"));
+    //   console.log(this.dataset.choice, opponentinfo.idToken);
+    //   connection.invoke("SendMyAnswer", opponentinfo.idToken, this.dataset.choice);
+    // } catch (error) {
+    //   console.error("Error find opponent:", error);
+    // }
     variants.forEach((variant) => {
       variant.addEventListener("click", handleClick);
     });
@@ -99,7 +93,7 @@ const DuelsQuestions = ({ questions, questionCount, connection, opponent }) => {
       variants.forEach((variant) => {
         variant.removeEventListener("click", handleClick);
       });
-      sendMyAnswer(connection, this.dataset.choice);
+
       if (this.dataset.choice === correctAnswer) {
         this.classList.add("correct");
         setTimeout(() => {
@@ -112,10 +106,10 @@ const DuelsQuestions = ({ questions, questionCount, connection, opponent }) => {
         }, 750);
       }
     }
-  }, [answer]);
+  }, [answers]);
 
   if (showResult) {
-     GameFinish(connection);
+    GameFinish(connection);
   }
   return (
     <>
